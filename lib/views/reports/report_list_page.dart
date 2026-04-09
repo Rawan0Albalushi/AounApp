@@ -15,10 +15,13 @@ class ReportListPage extends StatefulWidget {
     super.key,
     required this.title,
     required this.items,
+    this.heroSubtitle,
     this.emptyIcon = Icons.description_outlined,
   });
 
   final String title;
+  /// When null, [AppLocalizations.reportsListSubtitle] is used.
+  final String? heroSubtitle;
   final List<ReportItem> items;
   final IconData emptyIcon;
 
@@ -69,6 +72,8 @@ class _ReportListPageState extends State<ReportListPage> {
                       children: [
                         CorporateHeroHeader(
                           title: widget.title,
+                          subtitle:
+                              widget.heroSubtitle ?? l10n.reportsListSubtitle,
                         ),
                         CorporateHeroOverlap(
                           padding: EdgeInsets.fromLTRB(
@@ -200,6 +205,7 @@ class _ReportRow extends StatelessWidget {
     final kind = _kind(hash % 4);
 
     return Card(
+      clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

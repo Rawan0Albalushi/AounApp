@@ -37,6 +37,7 @@ class ApprovalDetailView extends StatelessWidget {
             children: [
               CorporateHeroHeader(
                 title: detailTitle,
+                subtitle: l10n.approvalDetailSubtitle,
               ),
               Expanded(
                 child: CorporateHeroOverlap(

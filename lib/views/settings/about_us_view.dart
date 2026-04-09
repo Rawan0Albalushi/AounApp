@@ -56,6 +56,7 @@ class AboutUsView extends StatelessWidget {
                       children: [
                         CorporateHeroHeader(
                           title: l10n.settingsAboutUs,
+                          subtitle: l10n.aboutUsSubtitle,
                           leading: IconButton(
                             icon: const Icon(Icons.arrow_back_rounded),
                             color: Colors.white,
@@ -70,6 +71,7 @@ class AboutUsView extends StatelessWidget {
                             0,
                           ),
                           child: Card(
+                            clipBehavior: Clip.antiAlias,
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Column(

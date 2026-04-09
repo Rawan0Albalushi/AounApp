@@ -198,6 +198,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profileTitle => 'الملف الشخصي';
 
   @override
+  String get profileSubtitle => 'هويتك في العمل وبيانات التواصل.';
+
+  @override
   String get employeeNo => 'الرقم الوظيفي';
 
   @override
@@ -231,6 +234,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dateRange => 'الفترة الزمنية';
 
   @override
+  String get reportsListSubtitle => 'صفِّ حسب الفترة واطلع على السجلات.';
+
+  @override
   String get selectDateRange => 'اختر الفترة';
 
   @override
@@ -252,6 +258,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get leaveRequestTitle => 'طلب إجازة';
 
   @override
+  String get leaveRequestSubtitle => 'خطط لإجازتك مع رصيدك أمامك.';
+
+  @override
+  String get leaveRequestIntro =>
+      'اختر نوع الإجازة والتواريخ، وأرفق المستندات عند الحاجة، ثم أرسل للاعتماد.';
+
+  @override
+  String get leaveRequestSubmitSuccess => 'تم إرسال طلب الإجازة.';
+
+  @override
   String get leaveBalance => 'رصيد الإجازة';
 
   @override
@@ -265,6 +281,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get createTaskTitle => 'إنشاء مهمة';
+
+  @override
+  String get createTaskSubtitle => 'عيّن العمل بأولوية واضحة وسياق كافٍ.';
+
+  @override
+  String get createTaskIntro => 'اختر زميلًا، وصف المطلوب، وحدد الأولوية.';
+
+  @override
+  String get createTaskSubmitSuccess => 'تم إنشاء المهمة.';
 
   @override
   String get assignTo => 'تعيين لموظف';
@@ -288,6 +313,26 @@ class AppLocalizationsAr extends AppLocalizations {
   String get serviceRequestTitle => 'طلب خدمة';
 
   @override
+  String get serviceRequestSubtitle => 'خطابات، شهادات، ومستندات عمل رسمية.';
+
+  @override
+  String get serviceRequestIntro =>
+      'اختر نوع الخدمة وطريقة التسليم، ثم اذكر التفاصيل ليتمكن فريق الموارد البشرية من تجهيز طلبك دون تأخير.';
+
+  @override
+  String get serviceRequestDetails => 'التفاصيل';
+
+  @override
+  String get serviceRequestDetailsHint =>
+      'الغرض، الصياغة، عدد النسخ، أو أي تعليمات أخرى';
+
+  @override
+  String get serviceRequestNeededBy => 'مطلوب بحلول';
+
+  @override
+  String get serviceRequestSubmitSuccess => 'تم إرسال طلب الخدمة.';
+
+  @override
   String get serviceType => 'نوع الخدمة';
 
   @override
@@ -297,13 +342,29 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weListenTitle => 'نستمع إليك';
 
   @override
+  String get weListenSubtitle => 'أفكار أو ملاحظات أو شكر — نقرأ كل طلب.';
+
+  @override
+  String get weListenIntro =>
+      'ملاحظاتك تساعدنا على تحسين عون وخدمات العمل. اختر التصنيف والأولوية، ثم اكتب رسالتك.';
+
+  @override
+  String get weListenSubmitSuccess => 'شكرًا لك. تم إرسال ملاحظاتك.';
+
+  @override
   String get feedbackCategory => 'التصنيف';
 
   @override
   String get feedbackMessage => 'رسالتك';
 
   @override
+  String get feedbackMessageHint => 'ما الذي تود إبلاغنا به؟';
+
+  @override
   String get managerialTitle => 'الاعتمادات';
+
+  @override
+  String get managerialSubtitle => 'راجع طلبات الإجازة والحضور المعلقة.';
 
   @override
   String get tabLeaves => 'الإجازات';
@@ -313,6 +374,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get announcementsTitle => 'الإعلانات';
+
+  @override
+  String get announcementsSubtitle => 'أخبار وتحديثات الشركة لفريقك.';
 
   @override
   String get announcementsSeeAll => 'عرض الكل';
@@ -328,6 +392,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get createAnnouncement => 'إنشاء إعلان';
+
+  @override
+  String get createAnnouncementSubtitle => 'انشر تحديثات بلغتين لجهة عملك.';
+
+  @override
+  String get createAnnouncementIntro =>
+      'أكمل النص بالعربية والإنجليزية ليقرأ الجميع الرسالة بوضوح.';
+
+  @override
+  String get createAnnouncementSubmitSuccess => 'تم نشر الإعلان.';
 
   @override
   String get announcementTitleEn => 'العنوان (إنجليزي)';
@@ -352,6 +426,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get leaveDetails => 'تفاصيل الإجازة';
+
+  @override
+  String get approvalDetailSubtitle => 'راجع الطلب واختر الإجراء المناسب.';
 
   @override
   String get announcementDetails => 'تفاصيل الإعلان';
@@ -394,7 +471,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsAboutUs => 'من نحن';
 
   @override
+  String get aboutUsSubtitle => 'قصة المنتج، الرسالة، وكيفية طلب المساعدة.';
+
+  @override
   String get settingsTermsOfService => 'اتفاقية شروط الخدمة';
+
+  @override
+  String get termsOfServiceSubtitle =>
+      'يرجى قراءة هذه الشروط قبل استخدام التطبيق.';
 
   @override
   String get settingsChangePassword => 'تغيير كلمة المرور';

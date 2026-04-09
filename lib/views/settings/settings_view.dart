@@ -11,7 +11,10 @@ import '../../widgets/app_shell_backdrop.dart';
 import '../../widgets/corporate_hero_header.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
+  const SettingsView({super.key, this.onBackFallback});
+
+  /// e.g. switch main shell to home tab when this page is not on the route stack.
+  final VoidCallback? onBackFallback;
 
   void _showLanguageSheet(BuildContext context, AppSettingsProvider settings) {
     final l10n = AppLocalizations.of(context);
@@ -133,6 +136,7 @@ class SettingsView extends StatelessWidget {
                     CorporateHeroHeader(
                       title: l10n.settingsTitle,
                       subtitle: l10n.appTitle,
+                      onBackFallback: onBackFallback,
                     ),
                     CorporateHeroOverlap(
                       padding: EdgeInsets.fromLTRB(

@@ -41,14 +41,29 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
     super.dispose();
   }
 
+  void _submit(AppLocalizations l10n) {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l10n.createAnnouncementSubmitSuccess),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+      ),
+    );
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
 
     final pageInsets = pagePadding(context);
     final maxW = contentMaxWidth(context);
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
+      resizeToAvoidBottomInset: true,
       body: AppShellBackdrop(
         child: SafeArea(
           top: false,
@@ -65,6 +80,7 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                       children: [
                         CorporateHeroHeader(
                           title: l10n.createAnnouncement,
+                          subtitle: l10n.createAnnouncementSubtitle,
                         ),
                         CorporateHeroOverlap(
                           padding: EdgeInsets.fromLTRB(
@@ -73,72 +89,124 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                             pageInsets.right,
                             0,
                           ),
-                          child: Form(
-                            key: _formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                TextFormField(
-                        controller: _titleEn,
-                        decoration: InputDecoration(
-                          labelText: l10n.announcementTitleEn,
-                        ),
-                        validator: (v) =>
-                            (v == null || v.trim().isEmpty)
-                                ? l10n.validationRequired
-                                : null,
-                      ),
-                      const SizedBox(height: 12),
-                      TextFormField(
-                        controller: _titleAr,
-                        decoration: InputDecoration(
-                          labelText: l10n.announcementTitleAr,
-                        ),
-                        validator: (v) =>
-                            (v == null || v.trim().isEmpty)
-                                ? l10n.validationRequired
-                                : null,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _bodyEn,
-                        minLines: 3,
-                        maxLines: 6,
-                        decoration: InputDecoration(
-                          labelText: l10n.announcementBodyEn,
-                          alignLabelWithHint: true,
-                        ),
-                        validator: (v) =>
-                            (v == null || v.trim().isEmpty)
-                                ? l10n.validationRequired
-                                : null,
-                      ),
-                      const SizedBox(height: 12),
-                      TextFormField(
-                        controller: _bodyAr,
-                        minLines: 3,
-                        maxLines: 6,
-                        decoration: InputDecoration(
-                          labelText: l10n.announcementBodyAr,
-                          alignLabelWithHint: true,
-                        ),
-                        validator: (v) =>
-                            (v == null || v.trim().isEmpty)
-                                ? l10n.validationRequired
-                                : null,
-                      ),
-                      const SizedBox(height: 24),
-                                HapticFilledButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState?.validate() ??
-                                        false) {
-                                      Navigator.of(context).pop();
-                                    }
-                                  },
-                                  child: Text(l10n.commonSubmit),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          color: AppColors.royalGold
+                                              .withValues(alpha: 0.14),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(10),
+                                          child: Icon(
+                                            Icons.campaign_outlined,
+                                            color: AppColors.navy,
+                                            size: 26,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 14),
+                                      Expanded(
+                                        child: Text(
+                                          l10n.createAnnouncementIntro,
+                                          style: theme.textTheme.bodyMedium
+                                              ?.copyWith(
+                                            height: 1.45,
+                                            color: scheme.onSurface
+                                                .withValues(alpha: 0.88),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: 16),
+                              Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Form(
+                                    key: _formKey,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        TextFormField(
+                                          controller: _titleEn,
+                                          decoration: InputDecoration(
+                                            labelText: l10n.announcementTitleEn,
+                                            filled: true,
+                                          ),
+                                          validator: (v) =>
+                                              (v == null || v.trim().isEmpty)
+                                                  ? l10n.validationRequired
+                                                  : null,
+                                        ),
+                                        const SizedBox(height: 12),
+                                        TextFormField(
+                                          controller: _titleAr,
+                                          decoration: InputDecoration(
+                                            labelText: l10n.announcementTitleAr,
+                                            filled: true,
+                                          ),
+                                          validator: (v) =>
+                                              (v == null || v.trim().isEmpty)
+                                                  ? l10n.validationRequired
+                                                  : null,
+                                        ),
+                                        const SizedBox(height: 16),
+                                        TextFormField(
+                                          controller: _bodyEn,
+                                          minLines: 3,
+                                          maxLines: 6,
+                                          decoration: InputDecoration(
+                                            labelText: l10n.announcementBodyEn,
+                                            alignLabelWithHint: true,
+                                            filled: true,
+                                          ),
+                                          validator: (v) =>
+                                              (v == null || v.trim().isEmpty)
+                                                  ? l10n.validationRequired
+                                                  : null,
+                                        ),
+                                        const SizedBox(height: 12),
+                                        TextFormField(
+                                          controller: _bodyAr,
+                                          minLines: 3,
+                                          maxLines: 6,
+                                          decoration: InputDecoration(
+                                            labelText: l10n.announcementBodyAr,
+                                            alignLabelWithHint: true,
+                                            filled: true,
+                                          ),
+                                          validator: (v) =>
+                                              (v == null || v.trim().isEmpty)
+                                                  ? l10n.validationRequired
+                                                  : null,
+                                        ),
+                                        const SizedBox(height: 24),
+                                        HapticFilledButton(
+                                          onPressed: () => _submit(l10n),
+                                          child: Text(l10n.commonSubmit),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],

@@ -34,6 +34,7 @@ class TermsOfServiceView extends StatelessWidget {
                       children: [
                         CorporateHeroHeader(
                           title: l10n.settingsTermsOfService,
+                          subtitle: l10n.termsOfServiceSubtitle,
                           leading: IconButton(
                             icon: const Icon(Icons.arrow_back_rounded),
                             color: Colors.white,
@@ -48,6 +49,7 @@ class TermsOfServiceView extends StatelessWidget {
                             0,
                           ),
                           child: Card(
+                            clipBehavior: Clip.antiAlias,
                             child: Padding(
                               padding: const EdgeInsets.all(20),
                               child: Text(

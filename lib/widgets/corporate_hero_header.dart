@@ -35,6 +35,8 @@ class CorporateHeroHeader extends StatelessWidget {
     this.leading,
     this.actions,
     this.bottom,
+    /// When there is no route to pop (e.g. tab inside [IndexedStack]), run this instead.
+    this.onBackFallback,
   });
 
   final String title;
@@ -42,15 +44,24 @@ class CorporateHeroHeader extends StatelessWidget {
   final Widget? leading;
   final List<Widget>? actions;
   final Widget? bottom;
+  final VoidCallback? onBackFallback;
 
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top;
     final canPop = Navigator.canPop(context);
+    final showBack = canPop || onBackFallback != null;
+    void handleBack() {
+      if (Navigator.canPop(context)) {
+        Navigator.maybePop(context);
+      } else {
+        onBackFallback?.call();
+      }
+    }
     final Widget leadingSlot = leading ??
-        (canPop
+        (showBack
             ? IconButton(
-                onPressed: () => Navigator.maybePop(context),
+                onPressed: handleBack,
                 icon: const Icon(Icons.arrow_back_rounded),
                 color: Colors.white,
                 tooltip:

@@ -21,10 +21,12 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
+    void goHome() => setState(() => _index = 0);
+
     final pages = [
       DashboardView(onOpenTab: (i) => setState(() => _index = i)),
-      const ProfileView(),
-      const SettingsView(),
+      ProfileView(onBackFallback: goHome),
+      SettingsView(onBackFallback: goHome),
     ];
 
     final bottomInset = MediaQuery.paddingOf(context).bottom;

@@ -200,6 +200,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileTitle => 'Profile';
 
   @override
+  String get profileSubtitle => 'Your workplace identity and contact details.';
+
+  @override
   String get employeeNo => 'Employee No.';
 
   @override
@@ -233,6 +236,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dateRange => 'Date range';
 
   @override
+  String get reportsListSubtitle => 'Filter by period and browse your records.';
+
+  @override
   String get selectDateRange => 'Select date range';
 
   @override
@@ -254,6 +260,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get leaveRequestTitle => 'Leave request';
 
   @override
+  String get leaveRequestSubtitle => 'Plan time off with your balance in view.';
+
+  @override
+  String get leaveRequestIntro =>
+      'Choose the leave type and dates, add an attachment if required, then submit for approval.';
+
+  @override
+  String get leaveRequestSubmitSuccess =>
+      'Your leave request has been submitted.';
+
+  @override
   String get leaveBalance => 'Leave balance';
 
   @override
@@ -267,6 +284,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createTaskTitle => 'Create task';
+
+  @override
+  String get createTaskSubtitle =>
+      'Assign work with clear priority and context.';
+
+  @override
+  String get createTaskIntro =>
+      'Pick a teammate, describe what needs to be done, and set priority.';
+
+  @override
+  String get createTaskSubmitSuccess => 'The task has been created.';
 
   @override
   String get assignTo => 'Assign to employee';
@@ -290,6 +318,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get serviceRequestTitle => 'Service request';
 
   @override
+  String get serviceRequestSubtitle =>
+      'HR letters, certificates, and workplace documents.';
+
+  @override
+  String get serviceRequestIntro =>
+      'Pick the service and delivery method, then describe what you need so HR can prepare it without back-and-forth.';
+
+  @override
+  String get serviceRequestDetails => 'Details';
+
+  @override
+  String get serviceRequestDetailsHint =>
+      'Purpose, exact wording, copies, or other instructions';
+
+  @override
+  String get serviceRequestNeededBy => 'Needed by';
+
+  @override
+  String get serviceRequestSubmitSuccess =>
+      'Your service request has been submitted.';
+
+  @override
   String get serviceType => 'Service type';
 
   @override
@@ -299,13 +349,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weListenTitle => 'We Listen';
 
   @override
+  String get weListenSubtitle =>
+      'Ideas, concerns, or praise — we read every submission.';
+
+  @override
+  String get weListenIntro =>
+      'Your feedback helps us improve Aoun and workplace services. Pick a category, set priority, and tell us what’s on your mind.';
+
+  @override
+  String get weListenSubmitSuccess => 'Thank you. Your feedback has been sent.';
+
+  @override
   String get feedbackCategory => 'Category';
 
   @override
   String get feedbackMessage => 'Your message';
 
   @override
+  String get feedbackMessageHint => 'What would you like us to know?';
+
+  @override
   String get managerialTitle => 'Approvals';
+
+  @override
+  String get managerialSubtitle =>
+      'Review pending leave and attendance requests.';
 
   @override
   String get tabLeaves => 'Leaves';
@@ -315,6 +383,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get announcementsTitle => 'Announcements';
+
+  @override
+  String get announcementsSubtitle => 'Company news and updates for your team.';
 
   @override
   String get announcementsSeeAll => 'See all';
@@ -330,6 +401,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createAnnouncement => 'Create announcement';
+
+  @override
+  String get createAnnouncementSubtitle =>
+      'Publish bilingual updates for your organization.';
+
+  @override
+  String get createAnnouncementIntro =>
+      'Complete both languages so every colleague can read the message clearly.';
+
+  @override
+  String get createAnnouncementSubmitSuccess =>
+      'The announcement has been published.';
 
   @override
   String get announcementTitleEn => 'Title (English)';
@@ -354,6 +437,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get leaveDetails => 'Leave details';
+
+  @override
+  String get approvalDetailSubtitle =>
+      'Review the request and choose an action.';
 
   @override
   String get announcementDetails => 'Announcement details';
@@ -396,7 +483,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsAboutUs => 'About us';
 
   @override
+  String get aboutUsSubtitle =>
+      'Our product story, mission, and how to get help.';
+
+  @override
   String get settingsTermsOfService => 'Terms of service agreement';
+
+  @override
+  String get termsOfServiceSubtitle =>
+      'Please read these terms before using the app.';
 
   @override
   String get settingsChangePassword => 'Change password';

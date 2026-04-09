@@ -105,6 +105,7 @@ class AnnouncementsView extends StatelessWidget {
                 children: [
                   CorporateHeroHeader(
                     title: l10n.announcementsTitle,
+                    subtitle: l10n.announcementsSubtitle,
                     actions: [
                       IconButton(
                         icon: const Icon(Icons.add_circle_outline),

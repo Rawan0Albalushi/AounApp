@@ -28,6 +28,7 @@ class ApprovalsView extends StatelessWidget {
               children: [
                 CorporateHeroHeader(
                   title: l10n.managerialTitle,
+                  subtitle: l10n.managerialSubtitle,
                   actions: [
                     IconButton(
                       tooltip: l10n.announcementsTitle,

@@ -7,7 +7,10 @@ import '../../widgets/app_shell_backdrop.dart';
 import '../../widgets/corporate_hero_header.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  const ProfileView({super.key, this.onBackFallback});
+
+  /// e.g. switch main shell to home tab when this page is not on the route stack.
+  final VoidCallback? onBackFallback;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,8 @@ class ProfileView extends StatelessWidget {
                       children: [
                         CorporateHeroHeader(
                           title: l10n.profileTitle,
+                          subtitle: l10n.profileSubtitle,
+                          onBackFallback: onBackFallback,
                         ),
                         CorporateHeroOverlap(
                           padding: EdgeInsets.fromLTRB(
@@ -49,6 +54,7 @@ class ProfileView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Card(
+                                clipBehavior: Clip.antiAlias,
                                 child: Padding(
                                   padding: const EdgeInsets.all(20),
                                   child: Row(
@@ -153,6 +159,7 @@ class _InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Card(
+      clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(

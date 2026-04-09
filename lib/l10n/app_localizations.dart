@@ -464,6 +464,12 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profileTitle;
 
+  /// No description provided for @profileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your workplace identity and contact details.'**
+  String get profileSubtitle;
+
   /// No description provided for @employeeNo.
   ///
   /// In en, this message translates to:
@@ -530,6 +536,12 @@ abstract class AppLocalizations {
   /// **'Date range'**
   String get dateRange;
 
+  /// No description provided for @reportsListSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by period and browse your records.'**
+  String get reportsListSubtitle;
+
   /// No description provided for @selectDateRange.
   ///
   /// In en, this message translates to:
@@ -572,6 +584,24 @@ abstract class AppLocalizations {
   /// **'Leave request'**
   String get leaveRequestTitle;
 
+  /// No description provided for @leaveRequestSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan time off with your balance in view.'**
+  String get leaveRequestSubtitle;
+
+  /// No description provided for @leaveRequestIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the leave type and dates, add an attachment if required, then submit for approval.'**
+  String get leaveRequestIntro;
+
+  /// No description provided for @leaveRequestSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your leave request has been submitted.'**
+  String get leaveRequestSubmitSuccess;
+
   /// No description provided for @leaveBalance.
   ///
   /// In en, this message translates to:
@@ -601,6 +631,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create task'**
   String get createTaskTitle;
+
+  /// No description provided for @createTaskSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign work with clear priority and context.'**
+  String get createTaskSubtitle;
+
+  /// No description provided for @createTaskIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a teammate, describe what needs to be done, and set priority.'**
+  String get createTaskIntro;
+
+  /// No description provided for @createTaskSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The task has been created.'**
+  String get createTaskSubmitSuccess;
 
   /// No description provided for @assignTo.
   ///
@@ -644,6 +692,42 @@ abstract class AppLocalizations {
   /// **'Service request'**
   String get serviceRequestTitle;
 
+  /// No description provided for @serviceRequestSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'HR letters, certificates, and workplace documents.'**
+  String get serviceRequestSubtitle;
+
+  /// No description provided for @serviceRequestIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the service and delivery method, then describe what you need so HR can prepare it without back-and-forth.'**
+  String get serviceRequestIntro;
+
+  /// No description provided for @serviceRequestDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get serviceRequestDetails;
+
+  /// No description provided for @serviceRequestDetailsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Purpose, exact wording, copies, or other instructions'**
+  String get serviceRequestDetailsHint;
+
+  /// No description provided for @serviceRequestNeededBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Needed by'**
+  String get serviceRequestNeededBy;
+
+  /// No description provided for @serviceRequestSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service request has been submitted.'**
+  String get serviceRequestSubmitSuccess;
+
   /// No description provided for @serviceType.
   ///
   /// In en, this message translates to:
@@ -662,6 +746,24 @@ abstract class AppLocalizations {
   /// **'We Listen'**
   String get weListenTitle;
 
+  /// No description provided for @weListenSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ideas, concerns, or praise — we read every submission.'**
+  String get weListenSubtitle;
+
+  /// No description provided for @weListenIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Your feedback helps us improve Aoun and workplace services. Pick a category, set priority, and tell us what’s on your mind.'**
+  String get weListenIntro;
+
+  /// No description provided for @weListenSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you. Your feedback has been sent.'**
+  String get weListenSubmitSuccess;
+
   /// No description provided for @feedbackCategory.
   ///
   /// In en, this message translates to:
@@ -674,11 +776,23 @@ abstract class AppLocalizations {
   /// **'Your message'**
   String get feedbackMessage;
 
+  /// No description provided for @feedbackMessageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you like us to know?'**
+  String get feedbackMessageHint;
+
   /// No description provided for @managerialTitle.
   ///
   /// In en, this message translates to:
   /// **'Approvals'**
   String get managerialTitle;
+
+  /// No description provided for @managerialSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review pending leave and attendance requests.'**
+  String get managerialSubtitle;
 
   /// No description provided for @tabLeaves.
   ///
@@ -697,6 +811,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Announcements'**
   String get announcementsTitle;
+
+  /// No description provided for @announcementsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Company news and updates for your team.'**
+  String get announcementsSubtitle;
 
   /// No description provided for @announcementsSeeAll.
   ///
@@ -727,6 +847,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create announcement'**
   String get createAnnouncement;
+
+  /// No description provided for @createAnnouncementSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish bilingual updates for your organization.'**
+  String get createAnnouncementSubtitle;
+
+  /// No description provided for @createAnnouncementIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete both languages so every colleague can read the message clearly.'**
+  String get createAnnouncementIntro;
+
+  /// No description provided for @createAnnouncementSubmitSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The announcement has been published.'**
+  String get createAnnouncementSubmitSuccess;
 
   /// No description provided for @announcementTitleEn.
   ///
@@ -775,6 +913,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Leave details'**
   String get leaveDetails;
+
+  /// No description provided for @approvalDetailSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review the request and choose an action.'**
+  String get approvalDetailSubtitle;
 
   /// No description provided for @announcementDetails.
   ///
@@ -854,11 +998,23 @@ abstract class AppLocalizations {
   /// **'About us'**
   String get settingsAboutUs;
 
+  /// No description provided for @aboutUsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our product story, mission, and how to get help.'**
+  String get aboutUsSubtitle;
+
   /// No description provided for @settingsTermsOfService.
   ///
   /// In en, this message translates to:
   /// **'Terms of service agreement'**
   String get settingsTermsOfService;
+
+  /// No description provided for @termsOfServiceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please read these terms before using the app.'**
+  String get termsOfServiceSubtitle;
 
   /// No description provided for @settingsChangePassword.
   ///
