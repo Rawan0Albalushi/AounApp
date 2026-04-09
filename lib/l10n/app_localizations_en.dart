@@ -1,0 +1,487 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get appTitle => 'Aoun';
+
+  @override
+  String get appTagline => 'Your workplace companion';
+
+  @override
+  String get commonContinue => 'Continue';
+
+  @override
+  String get commonSkip => 'Skip';
+
+  @override
+  String get commonNext => 'Next';
+
+  @override
+  String get commonBack => 'Back';
+
+  @override
+  String get commonSave => 'Save';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get commonSubmit => 'Submit';
+
+  @override
+  String get commonSearch => 'Search';
+
+  @override
+  String get commonDownloadPdf => 'Download PDF';
+
+  @override
+  String get commonApprove => 'Approve';
+
+  @override
+  String get commonReject => 'Reject';
+
+  @override
+  String get commonViewDetails => 'View details';
+
+  @override
+  String get commonLoading => 'Loading…';
+
+  @override
+  String get commonRetry => 'Retry';
+
+  @override
+  String get signOut => 'Sign out';
+
+  @override
+  String get signOutConfirm => 'Are you sure you want to sign out?';
+
+  @override
+  String get onboardingTitle1 => 'Everything in one place';
+
+  @override
+  String get onboardingBody1 =>
+      'Access attendance, leave, payslips, and services from a single dashboard.';
+
+  @override
+  String get onboardingTitle2 => 'Built for clarity';
+
+  @override
+  String get onboardingBody2 =>
+      'A premium experience with clear status tags and smooth navigation.';
+
+  @override
+  String get onboardingTitle3 => 'Speak your language';
+
+  @override
+  String get onboardingBody3 =>
+      'Switch between Arabic and English anytime with proper RTL and LTR layouts.';
+
+  @override
+  String get loginTitle => 'Welcome back';
+
+  @override
+  String get loginSubtitle => 'Sign in to continue';
+
+  @override
+  String get fieldEmail => 'Email';
+
+  @override
+  String get fieldPassword => 'Password';
+
+  @override
+  String get fieldConfirmPassword => 'Confirm password';
+
+  @override
+  String get fieldOtp => 'Verification code';
+
+  @override
+  String get loginAction => 'Sign in';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get forgotTitle => 'Reset password';
+
+  @override
+  String get forgotSubtitle =>
+      'Enter your email and we will send a verification code.';
+
+  @override
+  String get sendCode => 'Send code';
+
+  @override
+  String get otpTitle => 'Enter OTP';
+
+  @override
+  String otpSubtitle(String email) {
+    return 'We sent a code to $email';
+  }
+
+  @override
+  String get verify => 'Verify';
+
+  @override
+  String get resetTitle => 'Create new password';
+
+  @override
+  String get resetSubtitle => 'Choose a strong password for your account.';
+
+  @override
+  String get resetPassword => 'Reset password';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navProfile => 'Profile';
+
+  @override
+  String get navSettings => 'Settings';
+
+  @override
+  String dashboardGreeting(String name) {
+    return 'Hello, $name';
+  }
+
+  @override
+  String get dashboardTitle => 'Dashboard';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get quickActions => 'Quick actions';
+
+  @override
+  String get actionAttendance => 'Attendance';
+
+  @override
+  String get actionLeave => 'Leave';
+
+  @override
+  String get actionServiceStatus => 'Service status';
+
+  @override
+  String get servicesTitle => 'Services';
+
+  @override
+  String get svcTasks => 'Tasks';
+
+  @override
+  String get svcAttendanceReport => 'Attendance report';
+
+  @override
+  String get svcPayslip => 'Payslip';
+
+  @override
+  String get svcServiceMgmt => 'Service management';
+
+  @override
+  String get svcLeaveMgmt => 'Leave management';
+
+  @override
+  String get svcManagerDetails => 'Manager details';
+
+  @override
+  String get svcWeListen => 'We Listen';
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get employeeNo => 'Employee No.';
+
+  @override
+  String get department => 'Department';
+
+  @override
+  String get branch => 'Branch';
+
+  @override
+  String get joiningDate => 'Joining date';
+
+  @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get reportAttendance => 'Attendance report';
+
+  @override
+  String get reportSalaryTransfer => 'Salary transfer status';
+
+  @override
+  String get reportLeaveStatus => 'Leave status';
+
+  @override
+  String get reportPayslip => 'Payslip';
+
+  @override
+  String get dateRange => 'Date range';
+
+  @override
+  String get selectDateRange => 'Select date range';
+
+  @override
+  String get statusCompleted => 'Completed';
+
+  @override
+  String get statusPending => 'Pending';
+
+  @override
+  String get statusEarlyExit => 'Early exit';
+
+  @override
+  String get statusApproved => 'Approved';
+
+  @override
+  String get statusRejected => 'Rejected';
+
+  @override
+  String get leaveRequestTitle => 'Leave request';
+
+  @override
+  String get leaveBalance => 'Leave balance';
+
+  @override
+  String get leaveType => 'Leave type';
+
+  @override
+  String get attachment => 'Attachment';
+
+  @override
+  String get pickFile => 'Pick file';
+
+  @override
+  String get createTaskTitle => 'Create task';
+
+  @override
+  String get assignTo => 'Assign to employee';
+
+  @override
+  String get taskDetails => 'Task details';
+
+  @override
+  String get priority => 'Priority';
+
+  @override
+  String get priorityLow => 'Low';
+
+  @override
+  String get priorityMedium => 'Medium';
+
+  @override
+  String get priorityHigh => 'High';
+
+  @override
+  String get serviceRequestTitle => 'Service request';
+
+  @override
+  String get serviceType => 'Service type';
+
+  @override
+  String get deliveryMethod => 'Delivery method';
+
+  @override
+  String get weListenTitle => 'We Listen';
+
+  @override
+  String get feedbackCategory => 'Category';
+
+  @override
+  String get feedbackMessage => 'Your message';
+
+  @override
+  String get managerialTitle => 'Approvals';
+
+  @override
+  String get tabLeaves => 'Leaves';
+
+  @override
+  String get tabAttendanceExemptions => 'Attendance exemptions';
+
+  @override
+  String get announcementsTitle => 'Announcements';
+
+  @override
+  String get announcementsSeeAll => 'See all';
+
+  @override
+  String get announcementsHomePreviewTitle => 'Year-end office notice';
+
+  @override
+  String get announcementsHomePreviewPeriod => 'Dec 26–31, 2024';
+
+  @override
+  String get announcementsStatusActive => 'Active';
+
+  @override
+  String get createAnnouncement => 'Create announcement';
+
+  @override
+  String get announcementTitleEn => 'Title (English)';
+
+  @override
+  String get announcementTitleAr => 'Title (Arabic)';
+
+  @override
+  String get announcementBodyEn => 'Message (English)';
+
+  @override
+  String get announcementBodyAr => 'Message (Arabic)';
+
+  @override
+  String get emptyNoItems => 'Nothing here yet';
+
+  @override
+  String get emptyNoItemsHint => 'When there is data, it will show up here.';
+
+  @override
+  String get exemptionDetails => 'Exemption details';
+
+  @override
+  String get leaveDetails => 'Leave details';
+
+  @override
+  String get announcementDetails => 'Announcement details';
+
+  @override
+  String get validationRequired => 'This field is required';
+
+  @override
+  String get validationEmail => 'Enter a valid email';
+
+  @override
+  String get validationMinPassword => 'Password must be at least 8 characters';
+
+  @override
+  String get validationPasswordMatch => 'Passwords do not match';
+
+  @override
+  String get validationOtp => 'Enter the 6-digit code';
+
+  @override
+  String get sampleUserName => 'Ahmed Al-Mansouri';
+
+  @override
+  String get sampleJobTitle => 'Senior Specialist';
+
+  @override
+  String get sampleDepartment => 'Human Resources';
+
+  @override
+  String get sampleBranch => 'Riyadh HQ';
+
+  @override
+  String get sampleEmployeeNo => 'EMP-10294';
+
+  @override
+  String get settingsAboutUs => 'About us';
+
+  @override
+  String get settingsTermsOfService => 'Terms of service agreement';
+
+  @override
+  String get settingsChangePassword => 'Change password';
+
+  @override
+  String get selectLanguage => 'Select language';
+
+  @override
+  String get languageArabic => 'Arabic';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get fieldCurrentPassword => 'Current password';
+
+  @override
+  String get changePasswordTitle => 'Change password';
+
+  @override
+  String get changePasswordSubtitle =>
+      'Enter your current password and choose a new secure password.';
+
+  @override
+  String get changePasswordSuccess => 'Password updated successfully.';
+
+  @override
+  String get aboutUsContent =>
+      'Aoun is your workplace companion — bringing attendance, leave, payslips, and services into one clear experience. We are committed to a reliable, accessible experience for every employee.\n\nThis app is designed to support your daily tasks at work with clarity and ease of use.';
+
+  @override
+  String get termsOfServiceContent =>
+      'Last updated: April 2026.\n\nBy using the Aoun application, you agree to these terms. You must use the app only for authorized workplace purposes and in accordance with your employer\'s policies.\n\nWe may update features and these terms from time to time. Continued use of the app after changes constitutes acceptance of the revised terms.\n\nFor questions about these terms, contact your HR or IT department.';
+
+  @override
+  String get dashboardCardAttendanceStatus => 'Attendance\nStatus';
+
+  @override
+  String get dashboardCardLeaveStatus => 'Leave\nStatus';
+
+  @override
+  String get dashboardCardServiceStatus => 'Service\nStatus';
+
+  @override
+  String get dashboardGridTask => 'Task\nDetails';
+
+  @override
+  String get dashboardGridAttendance => 'Attendance\nDetails';
+
+  @override
+  String get dashboardGridPayslip => 'Payslip\nDetails';
+
+  @override
+  String get dashboardGridServiceMgmt => 'Service\nManagement';
+
+  @override
+  String get dashboardGridLeaveMgmt => 'Leave\nManagement';
+
+  @override
+  String get dashboardGridManager => 'Manager\nDetails';
+
+  @override
+  String get fieldDateStart => 'Start';
+
+  @override
+  String get fieldDateEnd => 'End';
+
+  @override
+  String get leaveBalanceBreakdown => 'Annual: 10 · Sick: 3 · Other: 1';
+
+  @override
+  String get demoAttachmentPdf => 'medical-note-demo.pdf · 240 KB';
+
+  @override
+  String get labelReferenceShort => 'ID';
+
+  @override
+  String approvalDetailNarrative(String id) {
+    return 'Reference $id · Submitted via Aoun app.\n\nAll timestamps are in Riyadh time. Supporting documents were uploaded to the HR document vault. You can cross-check policy rules SP-HR-12 and AT-EX-03 before deciding.\n\nEmployee unit: Operations · Cost center: CC-4401.';
+  }
+
+  @override
+  String get demoSampleTaskBody =>
+      'Review the Q2 attendance policy draft and add comments by Apr 18. Focus on remote-work clauses and overtime caps.';
+
+  @override
+  String get demoSampleFeedbackBody =>
+      'The new leave request form is clearer. It would help to show remaining balance per leave type in the same screen.';
+
+  @override
+  String get demoLoginHint => 'Demo: demo@aoun.app · password12';
+
+  @override
+  String get demoOtpHint => 'Demo: use code 123456';
+}
