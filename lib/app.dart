@@ -40,7 +40,7 @@ class AounApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Aoun',
           locale: settings.locale,
-          theme: buildAppTheme(locale: settings.locale),
+          theme: buildAppTheme(),
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           initialRoute: AppRoutes.splash,

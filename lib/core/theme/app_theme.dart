@@ -3,11 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'app_colors.dart';
 
-/// Builds the app [ThemeData] with locale-aware typography (Cairo / Poppins).
-ThemeData buildAppTheme({
-  required Locale locale,
-}) {
-  final bool isArabic = locale.languageCode == 'ar';
+/// Builds the app [ThemeData] with IBM Plex Sans Arabic for all locales.
+ThemeData buildAppTheme() {
   const ColorScheme scheme = ColorScheme.light(
     primary: AppColors.royalGold,
     onPrimary: Colors.white,
@@ -18,11 +15,11 @@ ThemeData buildAppTheme({
     error: Color(0xFFC62828),
   );
 
-  final TextTheme base = ThemeData.light().textTheme;
-
-  final TextTheme textTheme = isArabic
-      ? GoogleFonts.cairoTextTheme(base)
-      : GoogleFonts.poppinsTextTheme(base);
+  final ThemeData light = ThemeData.light();
+  final TextTheme textTheme =
+      GoogleFonts.ibmPlexSansArabicTextTheme(light.textTheme);
+  final TextTheme primaryTextTheme =
+      GoogleFonts.ibmPlexSansArabicTextTheme(light.primaryTextTheme);
 
   const Color titleColor = AppColors.navy;
 
@@ -40,6 +37,7 @@ ThemeData buildAppTheme({
     colorScheme: scheme,
     scaffoldBackgroundColor: AppColors.surfaceLight,
     textTheme: themedTitles,
+    primaryTextTheme: primaryTextTheme,
     appBarTheme: AppBarTheme(
       centerTitle: true,
       elevation: 0,
