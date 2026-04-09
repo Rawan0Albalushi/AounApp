@@ -60,7 +60,11 @@ class AuthProvider extends ChangeNotifier {
   }
 
   /// Logged-in password change (demo — replace with API call).
-  Future<void> changePassword() async {
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (currentPassword.isEmpty || newPassword.isEmpty) return;
     notifyListeners();
   }
 }

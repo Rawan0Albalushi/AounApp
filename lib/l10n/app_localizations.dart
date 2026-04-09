@@ -806,6 +806,12 @@ abstract class AppLocalizations {
   /// **'Passwords do not match'**
   String get validationPasswordMatch;
 
+  /// No description provided for @validationPasswordSameAsCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'New password must be different from your current password'**
+  String get validationPasswordSameAsCurrent;
+
   /// No description provided for @validationOtp.
   ///
   /// In en, this message translates to:
@@ -902,11 +908,101 @@ abstract class AppLocalizations {
   /// **'Password updated successfully.'**
   String get changePasswordSuccess;
 
-  /// No description provided for @aboutUsContent.
+  /// No description provided for @aboutUsIntro.
   ///
   /// In en, this message translates to:
-  /// **'Aoun is your workplace companion — bringing attendance, leave, payslips, and services into one clear experience. We are committed to a reliable, accessible experience for every employee.\n\nThis app is designed to support your daily tasks at work with clarity and ease of use.'**
-  String get aboutUsContent;
+  /// **'Aoun (عون) means support — and that is what we aim to be: one calm, focused place for the things you do every day at work, from attendance and leave to payslips, services, and feedback.'**
+  String get aboutUsIntro;
+
+  /// No description provided for @aboutUsWhoWeAreTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Who we are'**
+  String get aboutUsWhoWeAreTitle;
+
+  /// No description provided for @aboutUsWhoWeAreBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Aoun is an employee experience application that brings HR-related workflows into a single mobile experience. Instead of juggling multiple tools or unclear status, you get a structured dashboard, clear labels, and flows designed around real tasks: checking attendance, following up on leave, reading announcements, and reaching out when something needs attention.'**
+  String get aboutUsWhoWeAreBody;
+
+  /// No description provided for @aboutUsMissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our mission'**
+  String get aboutUsMissionTitle;
+
+  /// No description provided for @aboutUsMissionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We want to shrink the gap between you and your organization’s systems — fewer steps, less ambiguity, and faster answers to “what is my status?” and “what do I need to do next?”. The app is built for everyday use: readable typography, sensible defaults, and navigation that stays out of your way.'**
+  String get aboutUsMissionBody;
+
+  /// No description provided for @aboutUsVisionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our vision'**
+  String get aboutUsVisionTitle;
+
+  /// No description provided for @aboutUsVisionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A workplace where every employee — regardless of role or location — can see what matters, act on it in a few taps, and feel confident that information is presented clearly in both Arabic and English, with proper right-to-left and left-to-right layouts.'**
+  String get aboutUsVisionBody;
+
+  /// No description provided for @aboutUsOfferTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What you can do here'**
+  String get aboutUsOfferTitle;
+
+  /// No description provided for @aboutUsOfferBody.
+  ///
+  /// In en, this message translates to:
+  /// **'• Follow attendance, leave, and service status from the home experience.\n• Submit leave requests, tasks, and service requests through guided forms.\n• Open payslip and salary transfer views where your organization enables them.\n• Read company announcements and use “We Listen” to share structured feedback.\n• If you are a manager, review approvals for leave and attendance exemptions in one place.'**
+  String get aboutUsOfferBody;
+
+  /// No description provided for @aboutUsValuesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What guides us'**
+  String get aboutUsValuesTitle;
+
+  /// No description provided for @aboutUsValuesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Clarity over noise: we prefer honest labels and visible states over decorative clutter. Respect for your time: fewer taps for common actions. Accessibility: Arabic and English on equal footing. Trust: security and policy alignment are assumed, not optional.'**
+  String get aboutUsValuesBody;
+
+  /// No description provided for @aboutUsPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & security'**
+  String get aboutUsPrivacyTitle;
+
+  /// No description provided for @aboutUsPrivacyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'How your data is stored and processed follows your employer’s policies and applicable regulations. Protect your sign-in credentials, use company-approved devices and networks when required, and reach out to HR or IT if you suspect unauthorized access.'**
+  String get aboutUsPrivacyBody;
+
+  /// No description provided for @aboutUsSupportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & contact'**
+  String get aboutUsSupportTitle;
+
+  /// No description provided for @aboutUsSupportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For password resets, access issues, entitlement questions, or bugs, contact your HR or IT team — they own accounts, permissions, and integration with backend systems. Product feedback can also go through “We Listen” inside the app when your organization uses it.'**
+  String get aboutUsSupportBody;
+
+  /// No description provided for @aboutUsFooterNote.
+  ///
+  /// In en, this message translates to:
+  /// **'This page describes the Aoun product. Some screens may show sample or demo data for illustration. Last updated: April 2026.'**
+  String get aboutUsFooterNote;
 
   /// No description provided for @termsOfServiceContent.
   ///
