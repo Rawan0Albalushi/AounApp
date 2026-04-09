@@ -125,6 +125,7 @@ class AnnouncementsView extends StatelessWidget {
                       ),
                       child: ListView.separated(
                         padding: EdgeInsets.only(
+                          top: kCorporateHeroBodyTopSpacing,
                           bottom: pageInsets.bottom + 88,
                         ),
                         itemCount: items.length,

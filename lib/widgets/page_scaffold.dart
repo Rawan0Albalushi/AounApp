@@ -70,7 +70,7 @@ class PageScaffold extends StatelessWidget {
                         CorporateHeroOverlap(
                           padding: EdgeInsets.fromLTRB(
                             pageInsets.left,
-                            0,
+                            kCorporateHeroBodyTopSpacing,
                             pageInsets.right,
                             0,
                           ),

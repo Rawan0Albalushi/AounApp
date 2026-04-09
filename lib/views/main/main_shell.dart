@@ -50,7 +50,7 @@ class _MainShellState extends State<MainShell> {
               elevation: 0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.navy.withValues(alpha: 0.96),
+                  color: AppColors.royalGold,
                   borderRadius: BorderRadius.circular(18),
                   boxShadow: const [
                     BoxShadow(
@@ -114,8 +114,8 @@ class _BottomNavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final activeColor = AppColors.royalGold;
-    final inactiveColor = Colors.white.withValues(alpha: 0.78);
+    final activeColor = AppColors.navy;
+    final inactiveColor = Colors.white.withValues(alpha: 0.82);
     return Material(
       color: Colors.transparent,
       child: InkWell(

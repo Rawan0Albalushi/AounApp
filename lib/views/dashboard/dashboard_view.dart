@@ -81,11 +81,11 @@ class _DashboardViewState extends State<DashboardView> {
                                     ),
                                     onLeave: () => openAppRoute(
                                       context,
-                                      AppRoutes.formLeave,
+                                      AppRoutes.reportLeave,
                                     ),
                                     onService: () => openAppRoute(
                                       context,
-                                      AppRoutes.formService,
+                                      AppRoutes.reportService,
                                     ),
                                   ),
                                 ),
@@ -729,7 +729,7 @@ class _ServicesGrid extends StatelessWidget {
       (
         l10n.dashboardGridTask,
         Icons.assignment_turned_in_outlined,
-        AppRoutes.formTask,
+        AppRoutes.taskList,
       ),
       (
         l10n.dashboardGridAttendance,
@@ -742,11 +742,16 @@ class _ServicesGrid extends StatelessWidget {
         AppRoutes.reportPayslip,
       ),
       (
+        l10n.dashboardGridSalaryTransfer,
+        Icons.payments_outlined,
+        AppRoutes.reportSalary,
+      ),
+      (
         l10n.dashboardGridServiceMgmt,
         Icons.miscellaneous_services_outlined,
         AppRoutes.formService,
       ),
-      (l10n.dashboardGridLeaveMgmt, Icons.event_note_outlined, AppRoutes.reportLeave),
+      (l10n.dashboardGridLeaveMgmt, Icons.event_note_outlined, AppRoutes.formLeave),
       (l10n.dashboardGridManager, Icons.badge_outlined, AppRoutes.managerialApprovals),
     ];
 

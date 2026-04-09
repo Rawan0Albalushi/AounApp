@@ -50,7 +50,10 @@ class ApprovalDetailView extends StatelessWidget {
                         children: [
                           Expanded(
                             child: SingleChildScrollView(
-                              padding: EdgeInsets.only(bottom: pad.bottom),
+                              padding: EdgeInsets.only(
+                                top: kCorporateHeroBodyTopSpacing,
+                                bottom: pad.bottom,
+                              ),
                               child: Card(
                                 child: Padding(
                                   padding: const EdgeInsets.all(20),

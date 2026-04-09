@@ -89,6 +89,9 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
+                              const SizedBox(
+                                height: kCorporateHeroBodyTopSpacing,
+                              ),
                               Card(
                                 clipBehavior: Clip.antiAlias,
                                 child: Padding(

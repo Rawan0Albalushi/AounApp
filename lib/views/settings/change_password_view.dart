@@ -147,7 +147,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                     CorporateHeroOverlap(
                       padding: EdgeInsets.fromLTRB(
                         pageInsets.left,
-                        0,
+                        kCorporateHeroBodyTopSpacing,
                         pageInsets.right,
                         0,
                       ),

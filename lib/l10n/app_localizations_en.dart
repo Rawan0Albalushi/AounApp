@@ -230,6 +230,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reportLeaveStatus => 'Leave status';
 
   @override
+  String get reportServiceStatus => 'Service status';
+
+  @override
   String get reportPayslip => 'Payslip';
 
   @override
@@ -301,6 +304,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get taskDetails => 'Task details';
+
+  @override
+  String get taskListHeroSubtitle => 'See assignments and tasks you created.';
+
+  @override
+  String get taskListCreateNew => 'Create new task';
 
   @override
   String get priority => 'Priority';
@@ -596,6 +605,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardGridPayslip => 'Payslip\nDetails';
+
+  @override
+  String get dashboardGridSalaryTransfer => 'Salary\nTransfer';
 
   @override
   String get dashboardGridServiceMgmt => 'Service\nManagement';

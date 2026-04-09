@@ -11,9 +11,12 @@ abstract final class AppRoutes {
   static const String reportAttendance = '/reports/attendance';
   static const String reportSalary = '/reports/salary-transfer';
   static const String reportLeave = '/reports/leave-status';
+  static const String reportService = '/reports/service-status';
   static const String reportPayslip = '/reports/payslip';
 
   static const String formLeave = '/forms/leave';
+  /// Task list (assignments) before opening the create form.
+  static const String taskList = '/tasks';
   static const String formTask = '/forms/task';
   static const String formService = '/forms/service';
   static const String formWeListen = '/forms/we-listen';

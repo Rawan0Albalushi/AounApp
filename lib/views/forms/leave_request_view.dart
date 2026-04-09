@@ -74,6 +74,9 @@ class _LeaveRequestViewState extends State<LeaveRequestView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
+                              const SizedBox(
+                                height: kCorporateHeroBodyTopSpacing,
+                              ),
                               Card(
                                 clipBehavior: Clip.antiAlias,
                                 child: Padding(

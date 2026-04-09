@@ -1,6 +1,7 @@
 import '../models/announcement_item.dart';
 import '../models/approval_item.dart';
 import '../models/demo_notification.dart';
+import '../models/demo_task_item.dart';
 import '../models/report_item.dart';
 
 /// Central mock data so every screen can be explored end-to-end.
@@ -133,6 +134,89 @@ abstract final class DemoData {
       titleAr: 'إجازة طارئة (معتمدة)',
       subtitleAr: 'اعتماد في نفس اليوم',
       dateLabelAr: '٢٠٢٦-٠١-٠٨',
+    ),
+  ];
+
+  /// Tasks shown on the task list screen (demo). [DemoTaskItem.referenceDate] drives the date filter.
+  static final List<DemoTaskItem> taskListEntries = [
+    DemoTaskItem(
+      item: const ReportItem(
+        title: 'Q2 policy review',
+        subtitle: 'Assigned to you · High priority',
+        dateLabel: 'Due Apr 18',
+        titleAr: 'مراجعة سياسة الربع الثاني',
+        subtitleAr: 'مُعيّنة لك · أولوية عالية',
+        dateLabelAr: 'مستحق ١٨ أبريل',
+      ),
+      referenceDate: DateTime(2026, 4, 18),
+    ),
+    DemoTaskItem(
+      item: const ReportItem(
+        title: 'Onboarding checklist — Dana',
+        subtitle: 'You created · Medium',
+        dateLabel: 'Due Apr 22',
+        titleAr: 'قائمة تهيئة — دانة',
+        subtitleAr: 'أنشأتها أنت · متوسطة',
+        dateLabelAr: 'مستحق ٢٢ أبريل',
+      ),
+      referenceDate: DateTime(2026, 4, 22),
+    ),
+    DemoTaskItem(
+      item: const ReportItem(
+        title: 'Update org chart slide',
+        subtitle: 'Assigned to Omar Nasser · Low',
+        dateLabel: 'Completed Apr 4',
+        titleAr: 'تحديث شريحة الهيكل التنظيمي',
+        subtitleAr: 'معيّنة لعمر ناصر · منخفضة',
+        dateLabelAr: 'مكتمل ٤ أبريل',
+      ),
+      referenceDate: DateTime(2026, 4, 4),
+    ),
+    DemoTaskItem(
+      item: const ReportItem(
+        title: 'HR portal access review',
+        subtitle: 'Pending approval · IT',
+        dateLabel: 'Opened Apr 8',
+        titleAr: 'مراجعة صلاحيات بوابة الموارد البشرية',
+        subtitleAr: 'بانتظار الاعتماد · تقنية',
+        dateLabelAr: 'مفتوحة ٨ أبريل',
+      ),
+      referenceDate: DateTime(2026, 4, 8),
+    ),
+  ];
+
+  static List<ReportItem> serviceStatusReports = [
+    const ReportItem(
+      title: 'Experience letter (completed)',
+      subtitle: 'Digital copy · HR inbox',
+      dateLabel: '2026-04-02',
+      titleAr: 'خطاب خبرة (مكتمل)',
+      subtitleAr: 'نسخة رقمية · بريد الموارد البشرية',
+      dateLabelAr: '٢٠٢٦-٠٤-٠٢',
+    ),
+    const ReportItem(
+      title: 'Salary certificate (in progress)',
+      subtitle: 'Requested for bank · Case #SR-1042',
+      dateLabel: 'Due 2026-04-12',
+      titleAr: 'شهادة راتب (قيد التنفيذ)',
+      subtitleAr: 'مطلوبة للبنك · الحالة ‎#SR-1042',
+      dateLabelAr: 'مستحق ٢٠٢٦-٠٤-١٢',
+    ),
+    const ReportItem(
+      title: 'To-whom-it-may-concern (approved)',
+      subtitle: 'English · Pickup at reception',
+      dateLabel: '2026-03-20',
+      titleAr: 'إلى من يهمه الأمر (معتمد)',
+      subtitleAr: 'بالإنجليزية · الاستلام من الاستقبال',
+      dateLabelAr: '٢٠٢٦-٠٣-٢٠',
+    ),
+    const ReportItem(
+      title: 'No-objection letter (rejected)',
+      subtitle: 'Incomplete sponsor details',
+      dateLabel: '2026-02-05',
+      titleAr: 'خطاب عدم ممانعة (مرفوض)',
+      subtitleAr: 'بيانات الكفيل غير مكتملة',
+      dateLabelAr: '٢٠٢٦-٠٢-٠٥',
     ),
   ];
 

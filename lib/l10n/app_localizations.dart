@@ -524,6 +524,12 @@ abstract class AppLocalizations {
   /// **'Leave status'**
   String get reportLeaveStatus;
 
+  /// No description provided for @reportServiceStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Service status'**
+  String get reportServiceStatus;
+
   /// No description provided for @reportPayslip.
   ///
   /// In en, this message translates to:
@@ -661,6 +667,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Task details'**
   String get taskDetails;
+
+  /// No description provided for @taskListHeroSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See assignments and tasks you created.'**
+  String get taskListHeroSubtitle;
+
+  /// No description provided for @taskListCreateNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new task'**
+  String get taskListCreateNew;
 
   /// No description provided for @priority.
   ///
@@ -1201,6 +1219,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Payslip\nDetails'**
   String get dashboardGridPayslip;
+
+  /// No description provided for @dashboardGridSalaryTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary\nTransfer'**
+  String get dashboardGridSalaryTransfer;
 
   /// No description provided for @dashboardGridServiceMgmt.
   ///

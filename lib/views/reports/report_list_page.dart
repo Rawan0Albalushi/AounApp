@@ -85,6 +85,9 @@ class _ReportListPageState extends State<ReportListPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
+                              const SizedBox(
+                                height: kCorporateHeroBodyTopSpacing,
+                              ),
                               Material(
                       color: scheme.surface,
                       borderRadius: BorderRadius.circular(16),

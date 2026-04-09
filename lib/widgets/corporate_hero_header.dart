@@ -10,6 +10,9 @@ const double kCorporateHeroHeaderHeight = 240;
 /// Overlap into the body (same as dashboard status cards at `top: 168`).
 const double kCorporateHeroOverlap = 72;
 
+/// Space below the hero before the first overlapped card or list (report screens and forms).
+const double kCorporateHeroBodyTopSpacing = 26;
+
 List<BoxShadow> corporateHeroHeaderShadow(BuildContext context) {
   return [
     BoxShadow(
@@ -35,6 +38,7 @@ class CorporateHeroHeader extends StatelessWidget {
     this.leading,
     this.actions,
     this.bottom,
+
     /// When there is no route to pop (e.g. tab inside [IndexedStack]), run this instead.
     this.onBackFallback,
   });
@@ -58,22 +62,20 @@ class CorporateHeroHeader extends StatelessWidget {
         onBackFallback?.call();
       }
     }
-    final Widget leadingSlot = leading ??
+
+    final Widget leadingSlot =
+        leading ??
         (showBack
             ? IconButton(
                 onPressed: handleBack,
                 icon: const Icon(Icons.arrow_back_rounded),
                 color: Colors.white,
-                tooltip:
-                    MaterialLocalizations.of(context).backButtonTooltip,
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
               )
             : const SizedBox(width: 48));
     final List<Widget>? actionList = actions;
     final Widget trailingSlot = (actionList != null && actionList.isNotEmpty)
-        ? Row(
-            mainAxisSize: MainAxisSize.min,
-            children: actionList,
-          )
+        ? Row(mainAxisSize: MainAxisSize.min, children: actionList)
         : const SizedBox(width: 48);
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -110,9 +112,9 @@ class CorporateHeroHeader extends StatelessWidget {
                       title,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   trailingSlot,
@@ -124,15 +126,12 @@ class CorporateHeroHeader extends StatelessWidget {
                   subtitle!,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.white.withValues(alpha: 0.88),
-                        fontWeight: FontWeight.w500,
-                      ),
+                    color: Colors.white.withValues(alpha: 0.88),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
-              if (bottom != null) ...[
-                const SizedBox(height: 8),
-                bottom!,
-              ],
+              if (bottom != null) ...[const SizedBox(height: 8), bottom!],
               const Spacer(),
             ],
           ),
@@ -144,11 +143,7 @@ class CorporateHeroHeader extends StatelessWidget {
 
 /// Pulls content up under the hero gradient ([kCorporateHeroOverlap]).
 class CorporateHeroOverlap extends StatelessWidget {
-  const CorporateHeroOverlap({
-    super.key,
-    required this.child,
-    this.padding,
-  });
+  const CorporateHeroOverlap({super.key, required this.child, this.padding});
 
   final Widget child;
   final EdgeInsets? padding;
@@ -157,9 +152,7 @@ class CorporateHeroOverlap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.translate(
       offset: const Offset(0, -kCorporateHeroOverlap),
-      child: padding != null
-          ? Padding(padding: padding!, child: child)
-          : child,
+      child: padding != null ? Padding(padding: padding!, child: child) : child,
     );
   }
 }

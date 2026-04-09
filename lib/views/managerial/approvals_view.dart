@@ -96,7 +96,7 @@ class _ApprovalList extends StatelessWidget {
           child: ListView.separated(
             padding: EdgeInsets.fromLTRB(
               pageInsets.left,
-              0,
+              kCorporateHeroBodyTopSpacing,
               pageInsets.right,
               pageInsets.bottom + 8,
             ),

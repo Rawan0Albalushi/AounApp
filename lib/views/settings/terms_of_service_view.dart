@@ -48,22 +48,30 @@ class TermsOfServiceView extends StatelessWidget {
                             pageInsets.right,
                             0,
                           ),
-                          child: Card(
-                            clipBehavior: Clip.antiAlias,
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Text(
-                                l10n.termsOfServiceContent,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                      height: 1.55,
-                                      color: scheme.onSurface
-                                          .withValues(alpha: 0.88),
-                                    ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const SizedBox(
+                                height: kCorporateHeroBodyTopSpacing,
                               ),
-                            ),
+                              Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Text(
+                                    l10n.termsOfServiceContent,
+                                    style: Theme.of(context).textTheme.bodyLarge
+                                        ?.copyWith(
+                                          height: 1.55,
+                                          color: scheme.onSurface.withValues(
+                                            alpha: 0.88,
+                                          ),
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],

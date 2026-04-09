@@ -92,6 +92,9 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
+                              const SizedBox(
+                                height: kCorporateHeroBodyTopSpacing,
+                              ),
                               Card(
                                 clipBehavior: Clip.antiAlias,
                                 child: Padding(

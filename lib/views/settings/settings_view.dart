@@ -148,6 +148,9 @@ class SettingsView extends StatelessWidget {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            const SizedBox(
+                              height: kCorporateHeroBodyTopSpacing,
+                            ),
                             Card(
                               clipBehavior: Clip.antiAlias,
                               child: Column(

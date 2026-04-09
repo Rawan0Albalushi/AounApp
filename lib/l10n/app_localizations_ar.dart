@@ -228,6 +228,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reportLeaveStatus => 'حالة الإجازة';
 
   @override
+  String get reportServiceStatus => 'حالة الخدمة';
+
+  @override
   String get reportPayslip => 'كشف الراتب';
 
   @override
@@ -296,6 +299,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get taskDetails => 'تفاصيل المهمة';
+
+  @override
+  String get taskListHeroSubtitle =>
+      'اطلع على المهام المعيّنة لك والتي أنشأتها.';
+
+  @override
+  String get taskListCreateNew => 'إنشاء مهمة جديدة';
 
   @override
   String get priority => 'الأولوية';
@@ -583,6 +593,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dashboardGridPayslip => 'كشف\nالراتب';
+
+  @override
+  String get dashboardGridSalaryTransfer => 'حالة\nتحويل الراتب';
 
   @override
   String get dashboardGridServiceMgmt => 'إدارة\nالخدمات';
