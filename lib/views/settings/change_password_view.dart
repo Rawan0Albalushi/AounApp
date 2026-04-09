@@ -7,7 +7,7 @@ import '../../l10n/app_localizations.dart';
 import '../../providers/auth_provider.dart';
 import '../../widgets/app_shell_backdrop.dart';
 import '../../widgets/auth_branded_layout.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 import '../../widgets/haptic_button.dart';
 
 class ChangePasswordView extends StatefulWidget {
@@ -37,37 +37,43 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final scheme = Theme.of(context).colorScheme;
+    final pageInsets = pagePadding(context);
 
     return Scaffold(
-      appBar: buildCorporateAppBar(
-        context,
-        title: l10n.changePasswordTitle,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        automaticallyImplyLeading: false,
-      ),
+      backgroundColor: AppColors.surfaceLight,
       body: AppShellBackdrop(
         child: SafeArea(
+          top: false,
           child: SingleChildScrollView(
-            padding: pagePadding(context).copyWith(top: 20, bottom: 28),
+            padding: EdgeInsets.only(bottom: pageInsets.bottom + 28),
             child: Align(
               alignment: Alignment.topCenter,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: kAuthFormMaxWidth),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        l10n.changePasswordSubtitle,
-                        textAlign: TextAlign.center,
-                        style: authSectionMutedStyle(context, scheme),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    CorporateHeroHeader(
+                      title: l10n.changePasswordTitle,
+                      subtitle: l10n.changePasswordSubtitle,
+                      leading: IconButton(
+                        icon: const Icon(Icons.arrow_back_rounded),
+                        color: Colors.white,
+                        onPressed: () => Navigator.of(context).pop(),
                       ),
-                      const SizedBox(height: 28),
+                    ),
+                    CorporateHeroOverlap(
+                      padding: EdgeInsets.fromLTRB(
+                        pageInsets.left,
+                        0,
+                        pageInsets.right,
+                        0,
+                      ),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
                       TextFormField(
                         controller: _current,
                         obscureText: _obscure0,
@@ -164,8 +170,11 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                         },
                         child: Text(l10n.settingsChangePassword),
                       ),
-                    ],
-                  ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

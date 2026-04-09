@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/report_item.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/haptic_button.dart';
 import '../../widgets/app_shell_backdrop.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 import '../../widgets/status_tag.dart';
 
 class ReportListPage extends StatefulWidget {
@@ -48,22 +49,38 @@ class _ReportListPageState extends State<ReportListPage> {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
 
+    final pageInsets = pagePadding(context);
+    final maxW = contentMaxWidth(context);
     return Scaffold(
-      appBar: buildCorporateAppBar(context, title: widget.title),
+      backgroundColor: AppColors.surfaceLight,
       body: AppShellBackdrop(
-        child: LayoutBuilder(
-        builder: (context, constraints) {
-          final maxW = contentMaxWidth(context);
-          return Align(
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              padding: pagePadding(context),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxW),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Material(
+        child: SafeArea(
+          top: false,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(bottom: pageInsets.bottom),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxW),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CorporateHeroHeader(
+                          title: widget.title,
+                        ),
+                        CorporateHeroOverlap(
+                          padding: EdgeInsets.fromLTRB(
+                            pageInsets.left,
+                            0,
+                            pageInsets.right,
+                            0,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Material(
                       color: scheme.surface,
                       borderRadius: BorderRadius.circular(16),
                       child: InkWell(
@@ -128,12 +145,16 @@ class _ReportListPageState extends State<ReportListPage> {
                           child: _ReportRow(item: e, l10n: l10n),
                         ),
                       ),
-                  ],
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
         ),
       ),
     );

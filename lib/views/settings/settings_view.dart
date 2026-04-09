@@ -8,7 +8,7 @@ import '../../l10n/app_localizations.dart';
 import '../../providers/app_settings_provider.dart';
 import '../../providers/auth_provider.dart';
 import '../../widgets/app_shell_backdrop.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -111,115 +111,136 @@ class SettingsView extends StatelessWidget {
         ? l10n.languageArabic
         : l10n.languageEnglish;
 
+    final pageInsets = pagePadding(context);
     return Scaffold(
-      appBar: buildCorporateAppBar(context, title: l10n.settingsTitle),
+      backgroundColor: AppColors.surfaceLight,
       body: AppShellBackdrop(
-        child: LayoutBuilder(
+        child: SafeArea(
+          top: false,
+          child: LayoutBuilder(
         builder: (context, constraints) {
           return Align(
             alignment: Alignment.topCenter,
             child: SingleChildScrollView(
-              padding: pagePadding(context).copyWith(
-                bottom: pagePadding(context).bottom +
-                    mainShellFloatingNavBottomPadding,
+              padding: EdgeInsets.only(
+                bottom: pageInsets.bottom + mainShellFloatingNavBottomPadding,
               ),
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: maxW),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      l10n.appTitle,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: scheme.onSurface.withValues(alpha: 0.55),
-                            fontWeight: FontWeight.w500,
-                          ),
+                    CorporateHeroHeader(
+                      title: l10n.settingsTitle,
+                      subtitle: l10n.appTitle,
                     ),
-                    const SizedBox(height: 20),
-                    Card(
-                      clipBehavior: Clip.antiAlias,
-                      child: Column(
-                        children: [
-                          _SettingsTile(
-                            icon: Icons.groups_outlined,
-                            iconBg: AppColors.royalGold.withValues(alpha: 0.2),
-                            title: l10n.settingsAboutUs,
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(AppRoutes.aboutUs),
-                          ),
-                          Divider(
-                            height: 1,
-                            indent: 68,
-                            color: scheme.outlineVariant.withValues(alpha: 0.5),
-                          ),
-                          _SettingsTile(
-                            icon: Icons.language_rounded,
-                            iconBg: AppColors.royalGold.withValues(alpha: 0.2),
-                            title: l10n.language,
-                            subtitle: langLabel,
-                            onTap: () => _showLanguageSheet(context, settings),
-                          ),
-                          Divider(
-                            height: 1,
-                            indent: 68,
-                            color: scheme.outlineVariant.withValues(alpha: 0.5),
-                          ),
-                          _SettingsTile(
-                            icon: Icons.gavel_outlined,
-                            iconBg: AppColors.royalGold.withValues(alpha: 0.2),
-                            title: l10n.settingsTermsOfService,
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(AppRoutes.termsOfService),
-                          ),
-                          Divider(
-                            height: 1,
-                            indent: 68,
-                            color: scheme.outlineVariant.withValues(alpha: 0.5),
-                          ),
-                          _SettingsTile(
-                            icon: Icons.lock_reset_rounded,
-                            iconBg: AppColors.royalGold.withValues(alpha: 0.2),
-                            title: l10n.settingsChangePassword,
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(AppRoutes.changePassword),
-                          ),
-                        ],
+                    CorporateHeroOverlap(
+                      padding: EdgeInsets.fromLTRB(
+                        pageInsets.left,
+                        0,
+                        pageInsets.right,
+                        0,
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    FilledButton.tonal(
-                      style: FilledButton.styleFrom(
-                        foregroundColor: scheme.error,
-                        backgroundColor:
-                            scheme.error.withValues(alpha: 0.12),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: Column(
+                                children: [
+                                  _SettingsTile(
+                                    icon: Icons.groups_outlined,
+                                    iconBg: AppColors.royalGold
+                                        .withValues(alpha: 0.2),
+                                    title: l10n.settingsAboutUs,
+                                    onTap: () => Navigator.of(context)
+                                        .pushNamed(AppRoutes.aboutUs),
+                                  ),
+                                  Divider(
+                                    height: 1,
+                                    indent: 68,
+                                    color: scheme.outlineVariant
+                                        .withValues(alpha: 0.5),
+                                  ),
+                                  _SettingsTile(
+                                    icon: Icons.language_rounded,
+                                    iconBg: AppColors.royalGold
+                                        .withValues(alpha: 0.2),
+                                    title: l10n.language,
+                                    subtitle: langLabel,
+                                    onTap: () => _showLanguageSheet(
+                                        context, settings),
+                                  ),
+                                  Divider(
+                                    height: 1,
+                                    indent: 68,
+                                    color: scheme.outlineVariant
+                                        .withValues(alpha: 0.5),
+                                  ),
+                                  _SettingsTile(
+                                    icon: Icons.gavel_outlined,
+                                    iconBg: AppColors.royalGold
+                                        .withValues(alpha: 0.2),
+                                    title: l10n.settingsTermsOfService,
+                                    onTap: () => Navigator.of(context)
+                                        .pushNamed(AppRoutes.termsOfService),
+                                  ),
+                                  Divider(
+                                    height: 1,
+                                    indent: 68,
+                                    color: scheme.outlineVariant
+                                        .withValues(alpha: 0.5),
+                                  ),
+                                  _SettingsTile(
+                                    icon: Icons.lock_reset_rounded,
+                                    iconBg: AppColors.royalGold
+                                        .withValues(alpha: 0.2),
+                                    title: l10n.settingsChangePassword,
+                                    onTap: () => Navigator.of(context)
+                                        .pushNamed(AppRoutes.changePassword),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            FilledButton.tonal(
+                              style: FilledButton.styleFrom(
+                                foregroundColor: scheme.error,
+                                backgroundColor:
+                                    scheme.error.withValues(alpha: 0.12),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 14),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: () => _confirmSignOut(context),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.logout_rounded,
+                                      color: scheme.error),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    l10n.signOut,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: scheme.error,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      onPressed: () => _confirmSignOut(context),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.logout_rounded, color: scheme.error),
-                          const SizedBox(width: 10),
-                          Text(
-                            l10n.signOut,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: scheme.error,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           );
         },
+          ),
         ),
       ),
     );

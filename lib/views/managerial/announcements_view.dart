@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../core/router/app_routes.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/demo_data.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/announcement_item.dart';
 import '../../widgets/app_shell_backdrop.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 
 class AnnouncementsView extends StatelessWidget {
   const AnnouncementsView({super.key});
@@ -84,18 +85,10 @@ class AnnouncementsView extends StatelessWidget {
     final isAr = Localizations.localeOf(context).languageCode == 'ar';
     final items = DemoData.announcements;
 
+    final pageInsets = pagePadding(context);
+    final maxW = contentMaxWidth(context);
     return Scaffold(
-      appBar: buildCorporateAppBar(
-        context,
-        title: l10n.announcementsTitle,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add_circle_outline),
-            onPressed: () => Navigator.of(context)
-                .pushNamed(AppRoutes.managerialAnnouncementCreate),
-          ),
-        ],
-      ),
+      backgroundColor: AppColors.surfaceLight,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.of(context)
             .pushNamed(AppRoutes.managerialAnnouncementCreate),
@@ -103,16 +96,40 @@ class AnnouncementsView extends StatelessWidget {
         label: Text(l10n.createAnnouncement),
       ),
       body: AppShellBackdrop(
-        child: LayoutBuilder(
-        builder: (context, constraints) {
-          final maxW = contentMaxWidth(context);
-          return Align(
-            alignment: Alignment.topCenter,
-            child: ListView.separated(
-              padding: pagePadding(context),
-              itemCount: items.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
-              itemBuilder: (context, i) {
+        child: SafeArea(
+          top: false,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CorporateHeroHeader(
+                    title: l10n.announcementsTitle,
+                    actions: [
+                      IconButton(
+                        icon: const Icon(Icons.add_circle_outline),
+                        color: Colors.white,
+                        onPressed: () => Navigator.of(context)
+                            .pushNamed(AppRoutes.managerialAnnouncementCreate),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: CorporateHeroOverlap(
+                      padding: EdgeInsets.fromLTRB(
+                        pageInsets.left,
+                        0,
+                        pageInsets.right,
+                        0,
+                      ),
+                      child: ListView.separated(
+                        padding: EdgeInsets.only(
+                          bottom: pageInsets.bottom + 88,
+                        ),
+                        itemCount: items.length,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: 12),
+                        itemBuilder: (context, i) {
                 final e = items[i];
                 return ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: maxW),
@@ -132,10 +149,14 @@ class AnnouncementsView extends StatelessWidget {
                     ),
                   ),
                 );
-              },
-            ),
-          );
-        },
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

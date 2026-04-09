@@ -4,7 +4,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/app_shell_backdrop.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -14,95 +14,124 @@ class ProfileView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
 
+    final pageInsets = pagePadding(context);
+    final maxW = contentMaxWidth(context);
     return Scaffold(
-      appBar: buildCorporateAppBar(context, title: l10n.profileTitle),
+      backgroundColor: AppColors.surfaceLight,
       body: AppShellBackdrop(
-        child: LayoutBuilder(
-        builder: (context, constraints) {
-          final maxW = contentMaxWidth(context);
-          return Align(
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              padding: pagePadding(context).copyWith(
-                bottom: pagePadding(context).bottom +
-                    mainShellFloatingNavBottomPadding,
-              ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxW),
-                child: Column(
-                  children: [
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 36,
-                              backgroundColor:
-                                  AppColors.royalGold.withValues(alpha: 0.25),
-                              child: const Icon(Icons.person_rounded,
-                                  size: 36, color: AppColors.charcoal),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    l10n.sampleUserName,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    l10n.sampleJobTitle,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          color: scheme.onSurface
-                                              .withValues(alpha: 0.65),
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+        child: SafeArea(
+          top: false,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom: pageInsets.bottom +
+                        mainShellFloatingNavBottomPadding,
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxW),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CorporateHeroHeader(
+                          title: l10n.profileTitle,
                         ),
-                      ),
+                        CorporateHeroOverlap(
+                          padding: EdgeInsets.fromLTRB(
+                            pageInsets.left,
+                            0,
+                            pageInsets.right,
+                            0,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 36,
+                                        backgroundColor: AppColors.royalGold
+                                            .withValues(alpha: 0.25),
+                                        child: const Icon(
+                                          Icons.person_rounded,
+                                          size: 36,
+                                          color: AppColors.charcoal,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 16),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              l10n.sampleUserName,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge
+                                                  ?.copyWith(
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                  ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              l10n.sampleJobTitle,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium
+                                                  ?.copyWith(
+                                                    color: scheme.onSurface
+                                                        .withValues(
+                                                            alpha: 0.65),
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              _InfoCard(
+                                icon: Icons.badge_outlined,
+                                label: l10n.employeeNo,
+                                value: l10n.sampleEmployeeNo,
+                              ),
+                              const SizedBox(height: 12),
+                              _InfoCard(
+                                icon: Icons.apartment_outlined,
+                                label: l10n.department,
+                                value: l10n.sampleDepartment,
+                              ),
+                              const SizedBox(height: 12),
+                              _InfoCard(
+                                icon: Icons.location_on_outlined,
+                                label: l10n.branch,
+                                value: l10n.sampleBranch,
+                              ),
+                              const SizedBox(height: 12),
+                              _InfoCard(
+                                icon: Icons.event_outlined,
+                                label: l10n.joiningDate,
+                                value: '2021-03-15',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 16),
-                    _InfoCard(
-                      icon: Icons.badge_outlined,
-                      label: l10n.employeeNo,
-                      value: l10n.sampleEmployeeNo,
-                    ),
-                    const SizedBox(height: 12),
-                    _InfoCard(
-                      icon: Icons.apartment_outlined,
-                      label: l10n.department,
-                      value: l10n.sampleDepartment,
-                    ),
-                    const SizedBox(height: 12),
-                    _InfoCard(
-                      icon: Icons.location_on_outlined,
-                      label: l10n.branch,
-                      value: l10n.sampleBranch,
-                    ),
-                    const SizedBox(height: 12),
-                    _InfoCard(
-                      icon: Icons.event_outlined,
-                      label: l10n.joiningDate,
-                      value: '2021-03-15',
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
         ),
       ),
     );

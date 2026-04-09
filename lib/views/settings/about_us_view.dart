@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/app_shell_backdrop.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
@@ -12,43 +13,64 @@ class AboutUsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
+    final pageInsets = pagePadding(context);
+    final maxW = contentMaxWidth(context);
 
     return Scaffold(
-      appBar: buildCorporateAppBar(
-        context,
-        title: l10n.settingsAboutUs,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        automaticallyImplyLeading: false,
-      ),
+      backgroundColor: AppColors.surfaceLight,
       body: AppShellBackdrop(
-        child: LayoutBuilder(
-        builder: (context, constraints) {
-          final maxW = contentMaxWidth(context);
-          return Align(
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              padding: pagePadding(context),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxW),
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Text(
-                      l10n.aboutUsContent,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            height: 1.55,
-                            color: scheme.onSurface.withValues(alpha: 0.88),
+        child: SafeArea(
+          top: false,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(bottom: pageInsets.bottom),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxW),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CorporateHeroHeader(
+                          title: l10n.settingsAboutUs,
+                          leading: IconButton(
+                            icon: const Icon(Icons.arrow_back_rounded),
+                            color: Colors.white,
+                            onPressed: () => Navigator.of(context).pop(),
                           ),
+                        ),
+                        CorporateHeroOverlap(
+                          padding: EdgeInsets.fromLTRB(
+                            pageInsets.left,
+                            0,
+                            pageInsets.right,
+                            0,
+                          ),
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                l10n.aboutUsContent,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                      height: 1.55,
+                                      color: scheme.onSurface
+                                          .withValues(alpha: 0.88),
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
         ),
       ),
     );

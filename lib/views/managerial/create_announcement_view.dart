@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/demo_data.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/app_shell_backdrop.dart';
-import '../../widgets/corporate_app_bar.dart';
+import '../../widgets/corporate_hero_header.dart';
 import '../../widgets/haptic_button.dart';
 
 class CreateAnnouncementView extends StatefulWidget {
@@ -44,24 +45,40 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
+    final pageInsets = pagePadding(context);
+    final maxW = contentMaxWidth(context);
     return Scaffold(
-      appBar: buildCorporateAppBar(context, title: l10n.createAnnouncement),
+      backgroundColor: AppColors.surfaceLight,
       body: AppShellBackdrop(
-        child: LayoutBuilder(
-        builder: (context, constraints) {
-          final maxW = contentMaxWidth(context);
-          return Align(
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              padding: pagePadding(context),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxW),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      TextFormField(
+        child: SafeArea(
+          top: false,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(bottom: pageInsets.bottom),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxW),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CorporateHeroHeader(
+                          title: l10n.createAnnouncement,
+                        ),
+                        CorporateHeroOverlap(
+                          padding: EdgeInsets.fromLTRB(
+                            pageInsets.left,
+                            0,
+                            pageInsets.right,
+                            0,
+                          ),
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                TextFormField(
                         controller: _titleEn,
                         decoration: InputDecoration(
                           labelText: l10n.announcementTitleEn,
@@ -111,21 +128,26 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                 : null,
                       ),
                       const SizedBox(height: 24),
-                      HapticFilledButton(
-                        onPressed: () {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        child: Text(l10n.commonSubmit),
-                      ),
-                    ],
+                                HapticFilledButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState?.validate() ??
+                                        false) {
+                                      Navigator.of(context).pop();
+                                    }
+                                  },
+                                  child: Text(l10n.commonSubmit),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
+          ),
         ),
       ),
     );

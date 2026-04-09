@@ -61,6 +61,7 @@
   },
   "dashboardTitle": "Dashboard",
   "notifications": "Notifications",
+  "notificationsEmpty": "No notifications yet",
   "quickActions": "Quick actions",
   "actionAttendance": "Attendance",
   "actionLeave": "Leave",

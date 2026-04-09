@@ -1,3 +1,11 @@
+enum DemoNotificationKind {
+  leave,
+  finance,
+  task,
+  attendance,
+  announcement,
+}
+
 class DemoNotification {
   const DemoNotification({
     required this.title,
@@ -7,6 +15,7 @@ class DemoNotification {
     this.bodyAr,
     this.timeLabelAr,
     this.isUnread = true,
+    this.kind = DemoNotificationKind.announcement,
   });
 
   final String title;
@@ -16,6 +25,7 @@ class DemoNotification {
   final String? bodyAr;
   final String? timeLabelAr;
   final bool isUnread;
+  final DemoNotificationKind kind;
 
   String localizedTitle(bool isAr) =>
       isAr && titleAr != null && titleAr!.isNotEmpty ? titleAr! : title;

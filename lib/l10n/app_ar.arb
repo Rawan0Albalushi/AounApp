@@ -47,6 +47,7 @@
   "dashboardGreeting": "مرحبًا، {name}",
   "dashboardTitle": "لوحة التحكم",
   "notifications": "الإشعارات",
+  "notificationsEmpty": "لا إشعارات بعد",
   "quickActions": "إجراءات سريعة",
   "actionAttendance": "الحضور",
   "actionLeave": "الإجازة",

@@ -320,6 +320,7 @@ abstract final class DemoData {
       titleAr: 'تم اعتماد طلب الإجازة',
       bodyAr: 'تم اعتماد إجازتك السنوية ١٠–١٦ أبريل من الموارد البشرية.',
       timeLabelAr: 'منذ ساعتين',
+      kind: DemoNotificationKind.leave,
     ),
     const DemoNotification(
       title: 'Payslip ready',
@@ -328,6 +329,7 @@ abstract final class DemoData {
       titleAr: 'كشف الراتب جاهز',
       bodyAr: 'كشف مارس متاح ضمن الخدمات ← كشف الراتب.',
       timeLabelAr: 'أمس',
+      kind: DemoNotificationKind.finance,
     ),
     const DemoNotification(
       title: 'New task assigned',
@@ -337,6 +339,7 @@ abstract final class DemoData {
       bodyAr: '«مراجعة سياسة الربع الثاني» — استحقاق ١٨ أبريل. افتح المهام للعرض.',
       timeLabelAr: 'أمس',
       isUnread: false,
+      kind: DemoNotificationKind.task,
     ),
     const DemoNotification(
       title: 'Attendance note',
@@ -346,6 +349,7 @@ abstract final class DemoData {
       bodyAr: 'تم تصحيح بصمة ٢٧ مارس. لا يلزم إجراء.',
       timeLabelAr: '٢٨ مارس',
       isUnread: false,
+      kind: DemoNotificationKind.attendance,
     ),
     const DemoNotification(
       title: 'Announcement',
@@ -354,6 +358,7 @@ abstract final class DemoData {
       titleAr: 'إعلان',
       bodyAr: 'ساعات رمضان — راجع أحدث منشور في الإعلانات.',
       timeLabelAr: '٢٨ مارس',
+      kind: DemoNotificationKind.announcement,
     ),
   ];
 
