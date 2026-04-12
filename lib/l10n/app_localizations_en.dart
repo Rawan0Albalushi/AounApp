@@ -391,6 +391,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tabAttendanceExemptions => 'Attendance exemptions';
 
   @override
+  String get approvalStatusPending => 'Pending';
+
+  @override
+  String approvalsPendingSummary(int count) {
+    return '$count pending';
+  }
+
+  @override
+  String get approvalsEmptyLeavesTitle => 'No leave requests';
+
+  @override
+  String get approvalsEmptyLeavesHint =>
+      'When a team member submits leave, it will appear here for your review.';
+
+  @override
+  String get approvalsEmptyExemptionsTitle => 'No attendance exemptions';
+
+  @override
+  String get approvalsEmptyExemptionsHint =>
+      'Late arrivals, early departures, and similar requests will show up here.';
+
+  @override
   String get announcementsTitle => 'Announcements';
 
   @override

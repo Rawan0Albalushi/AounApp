@@ -135,6 +135,19 @@
   "managerialSubtitle": "Review pending leave and attendance requests.",
   "tabLeaves": "Leaves",
   "tabAttendanceExemptions": "Attendance exemptions",
+  "approvalStatusPending": "Pending",
+  "approvalsPendingSummary": "{count} pending",
+  "@approvalsPendingSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "approvalsEmptyLeavesTitle": "No leave requests",
+  "approvalsEmptyLeavesHint": "When a team member submits leave, it will appear here for your review.",
+  "approvalsEmptyExemptionsTitle": "No attendance exemptions",
+  "approvalsEmptyExemptionsHint": "Late arrivals, early departures, and similar requests will show up here.",
   "announcementsTitle": "Announcements",
   "announcementsSubtitle": "Company news and updates for your team.",
   "announcementsSeeAll": "See all",

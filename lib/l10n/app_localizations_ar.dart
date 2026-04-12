@@ -383,6 +383,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tabAttendanceExemptions => 'استثناءات الحضور';
 
   @override
+  String get approvalStatusPending => 'معلّق';
+
+  @override
+  String approvalsPendingSummary(int count) {
+    return '$count معلّقة';
+  }
+
+  @override
+  String get approvalsEmptyLeavesTitle => 'لا طلبات إجازة';
+
+  @override
+  String get approvalsEmptyLeavesHint =>
+      'عند تقديم أحد أفراد الفريق لطلب إجازة سيظهر هنا لمراجعتك.';
+
+  @override
+  String get approvalsEmptyExemptionsTitle => 'لا استثناءات حضور';
+
+  @override
+  String get approvalsEmptyExemptionsHint =>
+      'تظهر هنا طلبات التأخير والمغادرة المبكرة وما شابه عند ورودها.';
+
+  @override
   String get announcementsTitle => 'الإعلانات';
 
   @override

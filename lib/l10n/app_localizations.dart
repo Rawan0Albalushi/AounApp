@@ -824,6 +824,42 @@ abstract class AppLocalizations {
   /// **'Attendance exemptions'**
   String get tabAttendanceExemptions;
 
+  /// No description provided for @approvalStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get approvalStatusPending;
+
+  /// No description provided for @approvalsPendingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pending'**
+  String approvalsPendingSummary(int count);
+
+  /// No description provided for @approvalsEmptyLeavesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No leave requests'**
+  String get approvalsEmptyLeavesTitle;
+
+  /// No description provided for @approvalsEmptyLeavesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When a team member submits leave, it will appear here for your review.'**
+  String get approvalsEmptyLeavesHint;
+
+  /// No description provided for @approvalsEmptyExemptionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No attendance exemptions'**
+  String get approvalsEmptyExemptionsTitle;
+
+  /// No description provided for @approvalsEmptyExemptionsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Late arrivals, early departures, and similar requests will show up here.'**
+  String get approvalsEmptyExemptionsHint;
+
   /// No description provided for @announcementsTitle.
   ///
   /// In en, this message translates to:

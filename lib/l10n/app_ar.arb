@@ -121,6 +121,19 @@
   "managerialSubtitle": "راجع طلبات الإجازة والحضور المعلقة.",
   "tabLeaves": "الإجازات",
   "tabAttendanceExemptions": "استثناءات الحضور",
+  "approvalStatusPending": "معلّق",
+  "approvalsPendingSummary": "{count} معلّقة",
+  "@approvalsPendingSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "approvalsEmptyLeavesTitle": "لا طلبات إجازة",
+  "approvalsEmptyLeavesHint": "عند تقديم أحد أفراد الفريق لطلب إجازة سيظهر هنا لمراجعتك.",
+  "approvalsEmptyExemptionsTitle": "لا استثناءات حضور",
+  "approvalsEmptyExemptionsHint": "تظهر هنا طلبات التأخير والمغادرة المبكرة وما شابه عند ورودها.",
   "announcementsTitle": "الإعلانات",
   "announcementsSubtitle": "أخبار وتحديثات الشركة لفريقك.",
   "announcementsSeeAll": "عرض الكل",
