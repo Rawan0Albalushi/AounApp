@@ -14,7 +14,8 @@ abstract class BaseApiService {
   }) {
     final payload = response.data;
     Map<String, dynamic>? meta;
-    if (payload is Map<String, dynamic> && payload['meta'] is Map<String, dynamic>) {
+    if (payload is Map<String, dynamic> &&
+        payload['meta'] is Map<String, dynamic>) {
       meta = payload['meta'] as Map<String, dynamic>;
     }
     return ApiResponse<T>(

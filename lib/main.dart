@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'app.dart';
 import 'core/di/app_services.dart';
 import 'core/error/global_error_handler.dart';
+import 'features/tasks/presentation/providers/task_provider.dart';
 import 'providers/app_settings_provider.dart';
 import 'providers/auth_provider.dart';
 import 'providers/onboarding_provider.dart';
@@ -34,11 +35,14 @@ Future<void> main() async {
           ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
           ChangeNotifierProvider(create: (_) => OnboardingProvider()),
           ChangeNotifierProvider(
+            create: (_) => AuthProvider(
+              authRepository: services.authRepository,
+              sessionManager: services.sessionManager,
+            ),
+          ),
+          ChangeNotifierProvider(
             create: (_) =>
-                AuthProvider(
-                  authRepository: services.authRepository,
-                  sessionManager: services.sessionManager,
-                ),
+                TaskProvider(taskRepository: services.taskRepository),
           ),
         ],
         child: const AounApp(),

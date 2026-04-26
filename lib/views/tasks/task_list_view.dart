@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/router/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
-import '../../data/demo_data.dart';
+import '../../features/tasks/presentation/providers/task_provider.dart';
 import '../../l10n/app_localizations.dart';
+import '../../models/demo_task_item.dart';
 import '../../models/report_item.dart';
+import '../../shared/widgets/async_state_view.dart';
 import '../../widgets/app_shell_backdrop.dart';
 import '../../widgets/corporate_hero_header.dart';
-import '../../widgets/empty_state.dart';
 import '../../widgets/haptic_button.dart';
 import '../../widgets/status_tag.dart';
 
@@ -38,6 +40,11 @@ class _TaskListViewState extends State<TaskListView> {
       start: today.subtract(const Duration(days: 30)),
       end: today,
     );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<TaskProvider>().loadTasks();
+      }
+    });
   }
 
   Future<void> _pickRange() async {
@@ -51,7 +58,7 @@ class _TaskListViewState extends State<TaskListView> {
     if (picked != null) setState(() => _range = picked);
   }
 
-  List<ReportItem> get _filteredItems => DemoData.taskListEntries
+  List<ReportItem> _filteredItems(List<DemoTaskItem> source) => source
       .where((e) => _dateInRange(e.referenceDate, _range))
       .map((e) => e.item)
       .toList();
@@ -62,7 +69,8 @@ class _TaskListViewState extends State<TaskListView> {
     final scheme = Theme.of(context).colorScheme;
     final pageInsets = pagePadding(context);
     final maxW = contentMaxWidth(context);
-    final items = _filteredItems;
+    final tasks = context.watch<TaskProvider>();
+    final items = _filteredItems(tasks.tasks);
 
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
@@ -174,20 +182,25 @@ class _TaskListViewState extends State<TaskListView> {
                                 ),
                               ),
                               const SizedBox(height: 20),
-                              if (items.isEmpty)
-                                SizedBox(
-                                  height: constraints.maxHeight * 0.35,
-                                  child: const EmptyState(
-                                    icon: Icons.assignment_turned_in_outlined,
-                                  ),
-                                )
-                              else
-                                ...items.map(
-                                  (e) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 12),
-                                    child: _TaskRowCard(item: e),
-                                  ),
+                              AsyncStateView(
+                                isLoading: tasks.isLoading,
+                                hasError: tasks.hasError,
+                                isEmpty: items.isEmpty,
+                                emptyIcon: Icons.assignment_turned_in_outlined,
+                                onRetry: () =>
+                                    context.read<TaskProvider>().loadTasks(),
+                                child: Column(
+                                  children: [
+                                    for (final e in items)
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 12,
+                                        ),
+                                        child: _TaskRowCard(item: e),
+                                      ),
+                                  ],
                                 ),
+                              ),
                             ],
                           ),
                         ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../data/demo_data.dart';
+import '../../features/tasks/presentation/providers/task_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/app_shell_backdrop.dart';
 import '../../widgets/corporate_hero_header.dart';
@@ -37,16 +39,34 @@ class _CreateTaskViewState extends State<CreateTaskView> {
     super.dispose();
   }
 
-  void _submit(AppLocalizations l10n) {
+  Future<void> _submit(AppLocalizations l10n) async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
+    final ok = await context.read<TaskProvider>().createTask(
+      assigneeId: _employee!,
+      details: _details.text,
+      priority: _priority,
+    );
+    if (!mounted) return;
+    if (ok) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.createTaskSubmitSuccess),
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+        ),
+      );
+      Navigator.of(context).pop();
+      return;
+    }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(l10n.createTaskSubmitSuccess),
+        content: Text(
+          context.read<TaskProvider>().errorMessage ?? l10n.commonRetry,
+        ),
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
       ),
     );
-    Navigator.of(context).pop();
   }
 
   @override
@@ -55,6 +75,7 @@ class _CreateTaskViewState extends State<CreateTaskView> {
     final isAr = Localizations.localeOf(context).languageCode == 'ar';
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
+    final tasks = context.watch<TaskProvider>();
 
     final pageInsets = pagePadding(context);
     final maxW = contentMaxWidth(context);
@@ -213,8 +234,19 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                         ),
                                         const SizedBox(height: 24),
                                         HapticFilledButton(
-                                          onPressed: () => _submit(l10n),
-                                          child: Text(l10n.commonSubmit),
+                                          onPressed: tasks.isSaving
+                                              ? null
+                                              : () => _submit(l10n),
+                                          child: tasks.isSaving
+                                              ? const SizedBox(
+                                                  height: 18,
+                                                  width: 18,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                        strokeWidth: 2,
+                                                      ),
+                                                )
+                                              : Text(l10n.commonSubmit),
                                         ),
                                       ],
                                     ),

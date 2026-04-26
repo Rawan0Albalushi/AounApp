@@ -186,7 +186,10 @@ class _ReportListPageState extends State<ReportListPage> {
                                           padding: const EdgeInsets.only(
                                             bottom: 12,
                                           ),
-                                          child: _ReportRow(item: e, l10n: l10n),
+                                          child: _ReportRow(
+                                            item: e,
+                                            l10n: l10n,
+                                          ),
                                         ),
                                       )
                                       .toList(),

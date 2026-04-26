@@ -9,12 +9,17 @@ class TokenStorage {
   static const _kAccessToken = 'auth_access_token';
   static const _kRefreshToken = 'auth_refresh_token';
   static const _kTokenType = 'auth_token_type';
+  static const _kExpiresAt = 'auth_expires_at';
 
   final FlutterSecureStorage _secureStorage;
 
   Future<void> saveSession(AuthSession session) async {
     await _secureStorage.write(key: _kAccessToken, value: session.accessToken);
     await _secureStorage.write(key: _kTokenType, value: session.tokenType);
+    await _secureStorage.write(
+      key: _kExpiresAt,
+      value: session.expiresAt?.toIso8601String(),
+    );
     if (session.refreshToken != null && session.refreshToken!.isNotEmpty) {
       await _secureStorage.write(
         key: _kRefreshToken,
@@ -28,10 +33,13 @@ class TokenStorage {
     if (accessToken == null || accessToken.isEmpty) return null;
     final refreshToken = await _secureStorage.read(key: _kRefreshToken);
     final tokenType = await _secureStorage.read(key: _kTokenType) ?? 'Bearer';
+    final expiresAtRaw = await _secureStorage.read(key: _kExpiresAt);
+    final expiresAt = DateTime.tryParse(expiresAtRaw ?? '');
     return AuthSession(
       accessToken: accessToken,
       refreshToken: refreshToken,
       tokenType: tokenType,
+      expiresAt: expiresAt,
     );
   }
 
@@ -39,5 +47,6 @@ class TokenStorage {
     await _secureStorage.delete(key: _kAccessToken);
     await _secureStorage.delete(key: _kRefreshToken);
     await _secureStorage.delete(key: _kTokenType);
+    await _secureStorage.delete(key: _kExpiresAt);
   }
 }

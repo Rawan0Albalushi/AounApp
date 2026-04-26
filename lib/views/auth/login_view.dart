@@ -50,17 +50,28 @@ class _LoginViewState extends State<LoginView> {
 
   Future<void> _submit() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    await context.read<AuthProvider>().login(
-      _email.text.trim(),
-      _password.text,
-    );
-    if (!mounted) return;
-    Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.main, (r) => false);
+    try {
+      await context.read<AuthProvider>().login(
+        _email.text.trim(),
+        _password.text,
+      );
+      if (!mounted) return;
+      Navigator.of(
+        context,
+      ).pushNamedAndRemoveUntil(AppRoutes.main, (r) => false);
+    } catch (_) {
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.commonRetry)));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final auth = context.watch<AuthProvider>();
 
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
@@ -148,8 +159,16 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           const SizedBox(height: 20),
                           HapticFilledButton(
-                            onPressed: _submit,
-                            child: Text(l10n.loginAction),
+                            onPressed: auth.isBusy ? null : _submit,
+                            child: auth.isBusy
+                                ? const SizedBox(
+                                    height: 18,
+                                    width: 18,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : Text(l10n.loginAction),
                           ),
                         ],
                       ),

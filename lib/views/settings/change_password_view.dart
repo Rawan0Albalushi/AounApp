@@ -96,6 +96,15 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
         ),
       );
       Navigator.of(context).pop();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(l10n.commonRetry),
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+        ),
+      );
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
     }

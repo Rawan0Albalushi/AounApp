@@ -7,6 +7,7 @@ import 'package:aoun_app/features/auth/presentation/providers/auth_provider.dart
 
 class _FakeAuthRepository implements AuthRepository {
   bool loggedIn = false;
+  bool passwordChanged = false;
 
   @override
   Future<AuthSession> login({
@@ -20,6 +21,22 @@ class _FakeAuthRepository implements AuthRepository {
   @override
   Future<void> logout() async {
     loggedIn = false;
+  }
+
+  @override
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (currentPassword == 'wrong') {
+      throw Exception('invalid current password');
+    }
+    passwordChanged = true;
+  }
+
+  @override
+  Future<AuthSession> refreshSession() async {
+    return const AuthSession(accessToken: 'refreshed-token');
   }
 }
 
@@ -60,5 +77,27 @@ void main() {
     await provider.logout();
     expect(provider.isAuthenticated, isFalse);
     expect(repo.loggedIn, isFalse);
+  });
+
+  test('AuthProvider changePassword updates error state on failure', () async {
+    final repo = _FakeAuthRepository();
+    final sessionStore = _InMemorySessionStore();
+    final provider = AuthProvider(
+      authRepository: repo,
+      sessionManager: sessionStore,
+    );
+    await Future<void>.delayed(Duration.zero);
+
+    await expectLater(
+      () => provider.changePassword(
+        currentPassword: 'wrong',
+        newPassword: 'newPassword12',
+      ),
+      throwsException,
+    );
+    expect(provider.errorMessage, isNotNull);
+
+    provider.clearError();
+    expect(provider.errorMessage, isNull);
   });
 }

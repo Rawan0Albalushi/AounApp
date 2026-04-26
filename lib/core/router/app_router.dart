@@ -50,7 +50,8 @@ abstract final class AppRouter {
     AppRoutes.formWeListen: (_) => const WeListenView(),
     AppRoutes.managerialApprovals: (_) => const ApprovalsView(),
     AppRoutes.managerialAnnouncements: (_) => const AnnouncementsView(),
-    AppRoutes.managerialAnnouncementCreate: (_) => const CreateAnnouncementView(),
+    AppRoutes.managerialAnnouncementCreate: (_) =>
+        const CreateAnnouncementView(),
     AppRoutes.aboutUs: (_) => const AboutUsView(),
     AppRoutes.termsOfService: (_) => const TermsOfServiceView(),
     AppRoutes.changePassword: (_) => const ChangePasswordView(),

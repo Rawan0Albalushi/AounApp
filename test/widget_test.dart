@@ -21,6 +21,17 @@ class _FakeAuthRepository implements AuthRepository {
 
   @override
   Future<void> logout() async {}
+
+  @override
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {}
+
+  @override
+  Future<AuthSession> refreshSession() async {
+    return const AuthSession(accessToken: 'refreshed');
+  }
 }
 
 class _InMemorySessionStore implements SessionStore {

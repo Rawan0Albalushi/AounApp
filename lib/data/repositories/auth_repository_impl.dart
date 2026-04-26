@@ -21,9 +21,52 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
     final session = AppEnv.isApiMode
         ? await _authApiService.login(email: email, password: password)
-        : AuthSession(accessToken: 'demo-token-$email');
+        : AuthSession(
+            accessToken: 'demo-token-$email',
+            refreshToken: 'demo-refresh-token',
+            expiresAt: DateTime.now().add(const Duration(hours: 12)),
+          );
     await _tokenStorage.saveSession(session);
     return session;
+  }
+
+  @override
+  Future<AuthSession> refreshSession() async {
+    final current = await _tokenStorage.readSession();
+    final refreshToken = current?.refreshToken;
+    if (refreshToken == null || refreshToken.isEmpty) {
+      throw const AuthSessionParsingException();
+    }
+    final session = AppEnv.isApiMode
+        ? await _authApiService.refreshToken(refreshToken: refreshToken)
+        : AuthSession(
+            accessToken: 'demo-token-refreshed',
+            refreshToken: refreshToken,
+            expiresAt: DateTime.now().add(const Duration(hours: 12)),
+          );
+    await _tokenStorage.saveSession(session);
+    return session;
+  }
+
+  @override
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (currentPassword.isEmpty || newPassword.isEmpty) {
+      throw const AuthSessionParsingException();
+    }
+    if (AppEnv.isApiMode) {
+      await _authApiService.changePassword(
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      );
+      return;
+    }
+    // Demo mode still validates and can fail to avoid false-success actions.
+    if (currentPassword != 'password12') {
+      throw const AuthInvalidPasswordException();
+    }
   }
 
   @override
@@ -40,4 +83,11 @@ class AuthSessionParsingException implements Exception {
 
   @override
   String toString() => 'Auth session payload is missing token fields.';
+}
+
+class AuthInvalidPasswordException implements Exception {
+  const AuthInvalidPasswordException();
+
+  @override
+  String toString() => 'Current password is invalid.';
 }

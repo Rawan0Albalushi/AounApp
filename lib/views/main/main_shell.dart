@@ -142,4 +142,3 @@ class _BottomNavItem extends StatelessWidget {
 void openAppRoute(BuildContext context, String route) {
   Navigator.of(context).pushNamed(route);
 }
-

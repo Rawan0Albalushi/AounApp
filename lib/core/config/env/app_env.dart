@@ -32,4 +32,15 @@ class AppEnv {
   static bool get isDemoMode => authMode == 'demo';
 
   static bool get isApiMode => authMode == 'api';
+
+  static bool get enableNetworkLogs {
+    final raw = _env['ENABLE_NETWORK_LOGS']?.trim().toLowerCase();
+    return raw == '1' || raw == 'true';
+  }
+
+  static bool get enforceHttpsOnly {
+    final raw = _env['ENFORCE_HTTPS_ONLY']?.trim().toLowerCase();
+    if (raw == null || raw.isEmpty) return true;
+    return raw == '1' || raw == 'true';
+  }
 }
