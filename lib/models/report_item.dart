@@ -19,10 +19,12 @@ class ReportItem {
       isAr && titleAr != null && titleAr!.isNotEmpty ? titleAr! : title;
 
   String localizedSubtitle(bool isAr) =>
-      isAr && subtitleAr != null && subtitleAr!.isNotEmpty ? subtitleAr! : subtitle;
+      isAr && subtitleAr != null && subtitleAr!.isNotEmpty
+      ? subtitleAr!
+      : subtitle;
 
   String localizedDateLabel(bool isAr) =>
       isAr && dateLabelAr != null && dateLabelAr!.isNotEmpty
-          ? dateLabelAr!
-          : dateLabel;
+      ? dateLabelAr!
+      : dateLabel;
 }

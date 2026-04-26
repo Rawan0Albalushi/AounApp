@@ -15,6 +15,7 @@ abstract final class AppRoutes {
   static const String reportPayslip = '/reports/payslip';
 
   static const String formLeave = '/forms/leave';
+
   /// Task list (assignments) before opening the create form.
   static const String taskList = '/tasks';
   static const String formTask = '/forms/task';

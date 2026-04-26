@@ -102,10 +102,12 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                     children: [
                                       DecoratedBox(
                                         decoration: BoxDecoration(
-                                          color: AppColors.royalGold
-                                              .withValues(alpha: 0.14),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          color: AppColors.royalGold.withValues(
+                                            alpha: 0.14,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                         child: const Padding(
                                           padding: EdgeInsets.all(10),
@@ -122,10 +124,10 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                           l10n.createTaskIntro,
                                           style: theme.textTheme.bodyMedium
                                               ?.copyWith(
-                                            height: 1.45,
-                                            color: scheme.onSurface
-                                                .withValues(alpha: 0.88),
-                                          ),
+                                                height: 1.45,
+                                                color: scheme.onSurface
+                                                    .withValues(alpha: 0.88),
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -144,7 +146,8 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         DropdownButtonFormField<String>(
-                                          value: _employee, // ignore: deprecated_member_use
+                                          value:
+                                              _employee, // ignore: deprecated_member_use
                                           decoration: InputDecoration(
                                             labelText: l10n.assignTo,
                                             filled: true,
@@ -176,16 +179,16 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 16),
                                         Text(
                                           l10n.priority,
                                           style: theme.textTheme.titleSmall
                                               ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
                                         const SizedBox(height: 10),
                                         SegmentedButton<String>(
@@ -206,8 +209,7 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                           ],
                                           selected: {_priority},
                                           onSelectionChanged: (s) {
-                                            setState(
-                                                () => _priority = s.first);
+                                            setState(() => _priority = s.first);
                                           },
                                         ),
                                         const SizedBox(height: 24),

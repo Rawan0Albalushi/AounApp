@@ -57,8 +57,9 @@ class _OtpViewState extends State<OtpView> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: ConstrainedBox(
-                    constraints:
-                        const BoxConstraints(maxWidth: kAuthFormMaxWidth),
+                    constraints: const BoxConstraints(
+                      maxWidth: kAuthFormMaxWidth,
+                    ),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -94,12 +95,17 @@ class _OtpViewState extends State<OtpView> {
                           const SizedBox(height: 28),
                           HapticFilledButton(
                             onPressed: () async {
-                              if (!(_formKey.currentState?.validate() ?? false)) {
+                              if (!(_formKey.currentState?.validate() ??
+                                  false)) {
                                 return;
                               }
-                              await context.read<AuthProvider>().verifyOtp(_otp.text);
+                              await context.read<AuthProvider>().verifyOtp(
+                                _otp.text,
+                              );
                               if (!context.mounted) return;
-                              Navigator.of(context).pushNamed(AppRoutes.resetPassword);
+                              Navigator.of(
+                                context,
+                              ).pushNamed(AppRoutes.resetPassword);
                             },
                             child: Text(l10n.verify),
                           ),

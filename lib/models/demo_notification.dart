@@ -1,10 +1,4 @@
-enum DemoNotificationKind {
-  leave,
-  finance,
-  task,
-  attendance,
-  announcement,
-}
+enum DemoNotificationKind { leave, finance, task, attendance, announcement }
 
 class DemoNotification {
   const DemoNotification({
@@ -35,6 +29,6 @@ class DemoNotification {
 
   String localizedTimeLabel(bool isAr) =>
       isAr && timeLabelAr != null && timeLabelAr!.isNotEmpty
-          ? timeLabelAr!
-          : timeLabel;
+      ? timeLabelAr!
+      : timeLabel;
 }

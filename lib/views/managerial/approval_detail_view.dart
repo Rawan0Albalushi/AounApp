@@ -84,9 +84,9 @@ class ApprovalDetailView extends StatelessWidget {
                                       const SizedBox(height: 16),
                                       Text(
                                         '${l10n.labelReferenceShort}: ${item.id}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelLarge,
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.labelLarge,
                                       ),
                                       const SizedBox(height: 16),
                                       Text(
@@ -136,8 +136,7 @@ class ApprovalDetailView extends StatelessWidget {
                                         onPressed: () =>
                                             Navigator.of(context).pop(),
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                              AppColors.royalGold,
+                                          backgroundColor: AppColors.royalGold,
                                           foregroundColor: Colors.white,
                                         ),
                                         child: Text(l10n.commonApprove),

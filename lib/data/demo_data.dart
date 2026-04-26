@@ -420,7 +420,8 @@ abstract final class DemoData {
       body: '“Q2 policy review” — due Apr 18. Open Tasks to view.',
       timeLabel: 'Yesterday',
       titleAr: 'مهمة جديدة',
-      bodyAr: '«مراجعة سياسة الربع الثاني» — استحقاق ١٨ أبريل. افتح المهام للعرض.',
+      bodyAr:
+          '«مراجعة سياسة الربع الثاني» — استحقاق ١٨ أبريل. افتح المهام للعرض.',
       timeLabelAr: 'أمس',
       isUnread: false,
       kind: DemoNotificationKind.task,
@@ -447,8 +448,10 @@ abstract final class DemoData {
   ];
 
   /// Task assignees for dropdowns (id, nameEn, nameAr, deptEn, deptAr).
-  static const List<(String id, String nameEn, String nameAr, String deptEn, String deptAr)>
-      employees = [
+  static const List<
+    (String id, String nameEn, String nameAr, String deptEn, String deptAr)
+  >
+  employees = [
     ('e1', 'Sara Al-Harbi', 'سارة الحربي', 'HR', 'الموارد البشرية'),
     ('e2', 'Omar Nasser', 'عمر ناصر', 'IT', 'تقنية المعلومات'),
     ('e3', 'Layla Fahad', 'ليلى فهد', 'Finance', 'المالية'),
@@ -458,15 +461,15 @@ abstract final class DemoData {
 
   static const List<(String value, String labelEn, String labelAr)> leaveTypes =
       [
-    ('annual', 'Annual leave', 'إجازة سنوية'),
-    ('sick', 'Sick leave', 'إجازة مرضية'),
-    ('unpaid', 'Unpaid leave', 'إجازة بدون راتب'),
-    ('emergency', 'Emergency leave', 'إجازة طارئة'),
-    ('study', 'Study leave', 'إجازة دراسية'),
-  ];
+        ('annual', 'Annual leave', 'إجازة سنوية'),
+        ('sick', 'Sick leave', 'إجازة مرضية'),
+        ('unpaid', 'Unpaid leave', 'إجازة بدون راتب'),
+        ('emergency', 'Emergency leave', 'إجازة طارئة'),
+        ('study', 'Study leave', 'إجازة دراسية'),
+      ];
 
   static const List<(String value, String labelEn, String labelAr)>
-      serviceTypes = [
+  serviceTypes = [
     ('letter', 'HR letter / certificate', 'خطاب / شهادة موارد بشرية'),
     ('id', 'ID card renewal', 'تجديد بطاقة'),
     ('bank', 'Bank letter', 'خطاب بنك'),
@@ -474,14 +477,14 @@ abstract final class DemoData {
   ];
 
   static const List<(String value, String labelEn, String labelAr)>
-      deliveryMethods = [
+  deliveryMethods = [
     ('pickup', 'Pickup from HR', 'استلام من الموارد البشرية'),
     ('mail', 'Internal mail', 'بريد داخلي'),
     ('email', 'Secure email (PDF)', 'بريد إلكتروني آمن (PDF)'),
   ];
 
   static const List<(String value, String labelEn, String labelAr)>
-      feedbackCategories = [
+  feedbackCategories = [
     ('workplace', 'Workplace & facilities', 'مكان العمل والمرافق'),
     ('policy', 'Policies & processes', 'السياسات والإجراءات'),
     ('manager', 'Manager relations', 'العلاقة مع المدير'),

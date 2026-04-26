@@ -105,10 +105,12 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                     children: [
                                       DecoratedBox(
                                         decoration: BoxDecoration(
-                                          color: AppColors.royalGold
-                                              .withValues(alpha: 0.14),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          color: AppColors.royalGold.withValues(
+                                            alpha: 0.14,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                         child: const Padding(
                                           padding: EdgeInsets.all(10),
@@ -125,10 +127,10 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                           l10n.createAnnouncementIntro,
                                           style: theme.textTheme.bodyMedium
                                               ?.copyWith(
-                                            height: 1.45,
-                                            color: scheme.onSurface
-                                                .withValues(alpha: 0.88),
-                                          ),
+                                                height: 1.45,
+                                                color: scheme.onSurface
+                                                    .withValues(alpha: 0.88),
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -154,8 +156,8 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 12),
                                         TextFormField(
@@ -166,8 +168,8 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 16),
                                         TextFormField(
@@ -181,8 +183,8 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 12),
                                         TextFormField(
@@ -196,8 +198,8 @@ class _CreateAnnouncementViewState extends State<CreateAnnouncementView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 24),
                                         HapticFilledButton(

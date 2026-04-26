@@ -130,10 +130,7 @@ void showDemoNotificationsSheet(BuildContext context) {
                       const SizedBox(height: 12),
                   itemBuilder: (context, i) {
                     final n = items[i];
-                    return _NotificationCard(
-                      notification: n,
-                      isAr: isAr,
-                    );
+                    return _NotificationCard(notification: n, isAr: isAr);
                   },
                 ),
               ),
@@ -146,10 +143,7 @@ void showDemoNotificationsSheet(BuildContext context) {
 }
 
 class _NotificationCard extends StatelessWidget {
-  const _NotificationCard({
-    required this.notification,
-    required this.isAr,
-  });
+  const _NotificationCard({required this.notification, required this.isAr});
 
   final DemoNotification notification;
   final bool isAr;
@@ -186,11 +180,7 @@ class _NotificationCard extends StatelessWidget {
                 color: visuals.bg,
                 borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(
-                visuals.icon,
-                size: 24,
-                color: visuals.iconColor,
-              ),
+              child: Icon(visuals.icon, size: 24, color: visuals.iconColor),
             ),
             const SizedBox(width: 14),
             Expanded(

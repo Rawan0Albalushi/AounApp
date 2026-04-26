@@ -28,12 +28,7 @@ class AppShimmer extends StatelessWidget {
 
 /// Common card-shaped skeleton line.
 class ShimmerLine extends StatelessWidget {
-  const ShimmerLine({
-    super.key,
-    this.height = 14,
-    this.width,
-    this.radius = 8,
-  });
+  const ShimmerLine({super.key, this.height = 14, this.width, this.radius = 8});
 
   final double height;
   final double? width;

@@ -34,18 +34,17 @@ class AnnouncementsView extends StatelessWidget {
                 Text(
                   item.localizedTitle(isAr),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   '${item.localizedAuthor(isAr)} · ${item.publishedAt}',
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withValues(alpha: 0.65),
-                      ),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.65),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -55,21 +54,20 @@ class AnnouncementsView extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   body,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        height: 1.5,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyLarge?.copyWith(height: 1.5),
                 ),
                 const SizedBox(height: 24),
                 Text(
                   isAr ? item.bodyEn : item.bodyAr,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        height: 1.45,
-                        fontStyle: FontStyle.italic,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withValues(alpha: 0.75),
-                      ),
+                    height: 1.45,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.75),
+                  ),
                 ),
               ],
             );
@@ -90,8 +88,9 @@ class AnnouncementsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.of(context)
-            .pushNamed(AppRoutes.managerialAnnouncementCreate),
+        onPressed: () => Navigator.of(
+          context,
+        ).pushNamed(AppRoutes.managerialAnnouncementCreate),
         icon: const Icon(Icons.campaign_outlined),
         label: Text(l10n.createAnnouncement),
       ),
@@ -110,8 +109,9 @@ class AnnouncementsView extends StatelessWidget {
                       IconButton(
                         icon: const Icon(Icons.add_circle_outline),
                         color: Colors.white,
-                        onPressed: () => Navigator.of(context)
-                            .pushNamed(AppRoutes.managerialAnnouncementCreate),
+                        onPressed: () => Navigator.of(
+                          context,
+                        ).pushNamed(AppRoutes.managerialAnnouncementCreate),
                       ),
                     ],
                   ),
@@ -132,25 +132,26 @@ class AnnouncementsView extends StatelessWidget {
                         separatorBuilder: (context, index) =>
                             const SizedBox(height: 12),
                         itemBuilder: (context, i) {
-                final e = items[i];
-                return ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: maxW),
-                  child: Card(
-                    child: ListTile(
-                      title: Text(e.localizedTitle(isAr)),
-                      subtitle: Text(
-                        '${e.localizedSubtitle(isAr)}\n${e.publishedAt}',
-                      ),
-                      isThreeLine: true,
-                      trailing: Icon(
-                        Directionality.of(context) == TextDirection.rtl
-                            ? Icons.chevron_left
-                            : Icons.chevron_right,
-                      ),
-                      onTap: () => _openDetail(context, e),
-                    ),
-                  ),
-                );
+                          final e = items[i];
+                          return ConstrainedBox(
+                            constraints: BoxConstraints(maxWidth: maxW),
+                            child: Card(
+                              child: ListTile(
+                                title: Text(e.localizedTitle(isAr)),
+                                subtitle: Text(
+                                  '${e.localizedSubtitle(isAr)}\n${e.publishedAt}',
+                                ),
+                                isThreeLine: true,
+                                trailing: Icon(
+                                  Directionality.of(context) ==
+                                          TextDirection.rtl
+                                      ? Icons.chevron_left
+                                      : Icons.chevron_right,
+                                ),
+                                onTap: () => _openDetail(context, e),
+                              ),
+                            ),
+                          );
                         },
                       ),
                     ),

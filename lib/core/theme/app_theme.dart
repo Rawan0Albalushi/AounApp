@@ -16,10 +16,12 @@ ThemeData buildAppTheme() {
   );
 
   final ThemeData light = ThemeData.light();
-  final TextTheme textTheme =
-      GoogleFonts.ibmPlexSansArabicTextTheme(light.textTheme);
-  final TextTheme primaryTextTheme =
-      GoogleFonts.ibmPlexSansArabicTextTheme(light.primaryTextTheme);
+  final TextTheme textTheme = GoogleFonts.ibmPlexSansArabicTextTheme(
+    light.textTheme,
+  );
+  final TextTheme primaryTextTheme = GoogleFonts.ibmPlexSansArabicTextTheme(
+    light.primaryTextTheme,
+  );
 
   const Color titleColor = AppColors.navy;
 

@@ -37,10 +37,7 @@ class _MainShellState extends State<MainShell> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          IndexedStack(
-            index: _index,
-            children: pages,
-          ),
+          IndexedStack(index: _index, children: pages),
           Positioned(
             left: 18,
             right: 18,
@@ -60,8 +57,7 @@ class _MainShellState extends State<MainShell> {
                     ),
                   ],
                 ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 child: Row(
                   children: [
                     Expanded(
@@ -126,17 +122,14 @@ class _BottomNavItem extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                icon,
-                color: selected ? activeColor : inactiveColor,
-              ),
+              Icon(icon, color: selected ? activeColor : inactiveColor),
               const SizedBox(height: 2),
               Text(
                 label,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: selected ? activeColor : inactiveColor,
-                      fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    ),
+                  color: selected ? activeColor : inactiveColor,
+                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                ),
               ),
             ],
           ),

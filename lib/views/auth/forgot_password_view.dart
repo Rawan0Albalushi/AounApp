@@ -54,8 +54,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: ConstrainedBox(
-                    constraints:
-                        const BoxConstraints(maxWidth: kAuthFormMaxWidth),
+                    constraints: const BoxConstraints(
+                      maxWidth: kAuthFormMaxWidth,
+                    ),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -83,12 +84,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                           const SizedBox(height: 28),
                           HapticFilledButton(
                             onPressed: () {
-                              if (!(_formKey.currentState?.validate() ?? false)) {
+                              if (!(_formKey.currentState?.validate() ??
+                                  false)) {
                                 return;
                               }
-                              context
-                                  .read<AuthProvider>()
-                                  .setPendingEmail(_email.text.trim());
+                              context.read<AuthProvider>().setPendingEmail(
+                                _email.text.trim(),
+                              );
                               Navigator.of(context).pushNamed(AppRoutes.otp);
                             },
                             child: Text(l10n.sendCode),

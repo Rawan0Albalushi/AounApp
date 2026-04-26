@@ -5,11 +5,7 @@ import '../core/theme/app_colors.dart';
 enum StatusKind { completed, pending, earlyExit, approved, rejected }
 
 class StatusTag extends StatelessWidget {
-  const StatusTag({
-    super.key,
-    required this.label,
-    required this.kind,
-  });
+  const StatusTag({super.key, required this.label, required this.kind});
 
   final String label;
   final StatusKind kind;
@@ -41,10 +37,10 @@ class StatusTag extends StatelessWidget {
       child: Text(
         label,
         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: fg,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.2,
-            ),
+          color: fg,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.2,
+        ),
       ),
     );
   }

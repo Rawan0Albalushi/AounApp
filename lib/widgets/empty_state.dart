@@ -44,17 +44,17 @@ class EmptyState extends StatelessWidget {
               Text(
                 title ?? l10n.emptyNoItems,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8),
               Text(
                 subtitle ?? l10n.emptyNoItemsHint,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: scheme.onSurface.withValues(alpha: 0.65),
-                    ),
+                  color: scheme.onSurface.withValues(alpha: 0.65),
+                ),
               ),
             ],
           ),

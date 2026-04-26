@@ -50,12 +50,12 @@ class _LoginViewState extends State<LoginView> {
 
   Future<void> _submit() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    await context.read<AuthProvider>().login(_email.text.trim(), _password.text);
-    if (!mounted) return;
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      AppRoutes.main,
-      (r) => false,
+    await context.read<AuthProvider>().login(
+      _email.text.trim(),
+      _password.text,
     );
+    if (!mounted) return;
+    Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.main, (r) => false);
   }
 
   @override
@@ -79,8 +79,9 @@ class _LoginViewState extends State<LoginView> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: ConstrainedBox(
-                    constraints:
-                        const BoxConstraints(maxWidth: kAuthFormMaxWidth),
+                    constraints: const BoxConstraints(
+                      maxWidth: kAuthFormMaxWidth,
+                    ),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -132,8 +133,9 @@ class _LoginViewState extends State<LoginView> {
                           Align(
                             alignment: AlignmentDirectional.centerEnd,
                             child: TextButton(
-                              onPressed: () => Navigator.of(context)
-                                  .pushNamed(AppRoutes.forgotPassword),
+                              onPressed: () => Navigator.of(
+                                context,
+                              ).pushNamed(AppRoutes.forgotPassword),
                               style: TextButton.styleFrom(
                                 foregroundColor: AppColors.navy,
                                 padding: const EdgeInsets.symmetric(

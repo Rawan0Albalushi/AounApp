@@ -20,6 +20,7 @@ class ReportListPage extends StatefulWidget {
   });
 
   final String title;
+
   /// When null, [AppLocalizations.reportsListSubtitle] is used.
   final String? heroSubtitle;
   final List<ReportItem> items;
@@ -38,7 +39,8 @@ class _ReportListPageState extends State<ReportListPage> {
       context: context,
       firstDate: DateTime(now.year - 2),
       lastDate: DateTime(now.year + 1),
-      initialDateRange: _range ??
+      initialDateRange:
+          _range ??
           DateTimeRange(
             start: now.subtract(const Duration(days: 30)),
             end: now,
@@ -89,70 +91,77 @@ class _ReportListPageState extends State<ReportListPage> {
                                 height: kCorporateHeroBodyTopSpacing,
                               ),
                               Material(
-                      color: scheme.surface,
-                      borderRadius: BorderRadius.circular(16),
-                      child: InkWell(
-                        onTap: _pickRange,
-                        borderRadius: BorderRadius.circular(16),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            children: [
-                              Icon(Icons.date_range_rounded,
-                                  color: scheme.primary),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      l10n.dateRange,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                            color: scheme.onSurface
-                                                .withValues(alpha: 0.6),
+                                color: scheme.surface,
+                                borderRadius: BorderRadius.circular(16),
+                                child: InkWell(
+                                  onTap: _pickRange,
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.date_range_rounded,
+                                          color: scheme.primary,
+                                        ),
+                                        const SizedBox(width: 12),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                l10n.dateRange,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .labelMedium
+                                                    ?.copyWith(
+                                                      color: scheme.onSurface
+                                                          .withValues(
+                                                            alpha: 0.6,
+                                                          ),
+                                                    ),
+                                              ),
+                                              const SizedBox(height: 4),
+                                              Text(
+                                                _range == null
+                                                    ? l10n.selectDateRange
+                                                    : '${_range!.start.toIso8601String().split('T').first} → ${_range!.end.toIso8601String().split('T').first}',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleSmall
+                                                    ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                              ),
+                                            ],
                                           ),
+                                        ),
+                                        Icon(
+                                          Directionality.of(context) ==
+                                                  TextDirection.rtl
+                                              ? Icons.chevron_left
+                                              : Icons.chevron_right,
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      _range == null
-                                          ? l10n.selectDateRange
-                                          : '${_range!.start.toIso8601String().split('T').first} → ${_range!.end.toIso8601String().split('T').first}',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                              Icon(
-                                Directionality.of(context) == TextDirection.rtl
-                                    ? Icons.chevron_left
-                                    : Icons.chevron_right,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    if (widget.items.isEmpty)
-                      SizedBox(
-                        height: constraints.maxHeight * 0.45,
-                        child: EmptyState(icon: widget.emptyIcon),
-                      )
-                    else
-                      ...widget.items.map(
-                        (e) => Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: _ReportRow(item: e, l10n: l10n),
-                        ),
-                      ),
+                              const SizedBox(height: 20),
+                              if (widget.items.isEmpty)
+                                SizedBox(
+                                  height: constraints.maxHeight * 0.45,
+                                  child: EmptyState(icon: widget.emptyIcon),
+                                )
+                              else
+                                ...widget.items.map(
+                                  (e) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: _ReportRow(item: e, l10n: l10n),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
@@ -224,16 +233,15 @@ class _ReportRow extends StatelessWidget {
                       Text(
                         item.localizedTitle(isAr),
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 6),
                       Text(
                         item.localizedSubtitle(isAr),
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color:
-                                  scheme.onSurface.withValues(alpha: 0.65),
-                            ),
+                          color: scheme.onSurface.withValues(alpha: 0.65),
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Text(
@@ -262,8 +270,10 @@ class _ReportRow extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(0, 40),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

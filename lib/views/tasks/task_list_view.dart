@@ -14,8 +14,7 @@ import '../../widgets/status_tag.dart';
 
 bool _dateInRange(DateTime d, DateTimeRange range) {
   final day = DateTime(d.year, d.month, d.day);
-  final start =
-      DateTime(range.start.year, range.start.month, range.start.day);
+  final start = DateTime(range.start.year, range.start.month, range.start.day);
   final end = DateTime(range.end.year, range.end.month, range.end.day);
   return !day.isBefore(start) && !day.isAfter(end);
 }
@@ -122,18 +121,21 @@ class _TaskListViewState extends State<TaskListView> {
                                               Text(
                                                 l10n.dateRange,
                                                 style: Theme.of(context)
-                                                    .textTheme.labelMedium
+                                                    .textTheme
+                                                    .labelMedium
                                                     ?.copyWith(
                                                       color: scheme.onSurface
                                                           .withValues(
-                                                              alpha: 0.6),
+                                                            alpha: 0.6,
+                                                          ),
                                                     ),
                                               ),
                                               const SizedBox(height: 4),
                                               Text(
                                                 '${_range.start.toIso8601String().split('T').first} → ${_range.end.toIso8601String().split('T').first}',
                                                 style: Theme.of(context)
-                                                    .textTheme.titleSmall
+                                                    .textTheme
+                                                    .titleSmall
                                                     ?.copyWith(
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -155,14 +157,17 @@ class _TaskListViewState extends State<TaskListView> {
                               ),
                               const SizedBox(height: 16),
                               HapticFilledButton(
-                                onPressed: () => Navigator.of(context)
-                                    .pushNamed(AppRoutes.formTask),
+                                onPressed: () => Navigator.of(
+                                  context,
+                                ).pushNamed(AppRoutes.formTask),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Icon(Icons.add_task_rounded,
-                                        size: 22),
+                                    const Icon(
+                                      Icons.add_task_rounded,
+                                      size: 22,
+                                    ),
                                     const SizedBox(width: 10),
                                     Text(l10n.taskListCreateNew),
                                   ],
@@ -251,15 +256,15 @@ class _TaskRowCard extends StatelessWidget {
                   Text(
                     item.localizedTitle(isAr),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     item.localizedSubtitle(isAr),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: scheme.onSurface.withValues(alpha: 0.65),
-                        ),
+                      color: scheme.onSurface.withValues(alpha: 0.65),
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(

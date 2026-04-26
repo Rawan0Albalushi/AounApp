@@ -29,6 +29,8 @@ class AppSettingsProvider extends ChangeNotifier {
   }
 
   void toggleLocale() {
-    setLocale(_locale.languageCode == 'ar' ? const Locale('en') : const Locale('ar'));
+    setLocale(
+      _locale.languageCode == 'ar' ? const Locale('en') : const Locale('ar'),
+    );
   }
 }

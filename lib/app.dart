@@ -79,10 +79,8 @@ class AounApp extends StatelessWidget {
               final title = args?['title'] as String?;
               if (item != null && title != null) {
                 return MaterialPageRoute<void>(
-                  builder: (_) => ApprovalDetailView(
-                    detailTitle: title,
-                    item: item,
-                  ),
+                  builder: (_) =>
+                      ApprovalDetailView(detailTitle: title, item: item),
                   settings: settings,
                 );
               }

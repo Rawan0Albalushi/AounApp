@@ -30,8 +30,8 @@ class ProfileView extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: SingleChildScrollView(
                   padding: EdgeInsets.only(
-                    bottom: pageInsets.bottom +
-                        mainShellFloatingNavBottomPadding,
+                    bottom:
+                        pageInsets.bottom + mainShellFloatingNavBottomPadding,
                   ),
                   child: ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: maxW),
@@ -84,8 +84,7 @@ class ProfileView extends StatelessWidget {
                                                   .textTheme
                                                   .titleLarge
                                                   ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                             ),
                                             const SizedBox(height: 4),
@@ -97,7 +96,8 @@ class ProfileView extends StatelessWidget {
                                                   ?.copyWith(
                                                     color: scheme.onSurface
                                                         .withValues(
-                                                            alpha: 0.65),
+                                                          alpha: 0.65,
+                                                        ),
                                                   ),
                                             ),
                                           ],
@@ -176,15 +176,15 @@ class _InfoCard extends StatelessWidget {
                   Text(
                     label,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: scheme.onSurface.withValues(alpha: 0.6),
-                        ),
+                      color: scheme.onSurface.withValues(alpha: 0.6),
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     value,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),

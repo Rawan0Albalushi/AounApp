@@ -100,10 +100,12 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                     children: [
                                       DecoratedBox(
                                         decoration: BoxDecoration(
-                                          color: AppColors.royalGold
-                                              .withValues(alpha: 0.14),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          color: AppColors.royalGold.withValues(
+                                            alpha: 0.14,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                         child: const Padding(
                                           padding: EdgeInsets.all(10),
@@ -120,10 +122,10 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                           l10n.serviceRequestIntro,
                                           style: theme.textTheme.bodyMedium
                                               ?.copyWith(
-                                            height: 1.45,
-                                            color: scheme.onSurface
-                                                .withValues(alpha: 0.88),
-                                          ),
+                                                height: 1.45,
+                                                color: scheme.onSurface
+                                                    .withValues(alpha: 0.88),
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -142,7 +144,8 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         DropdownButtonFormField<String>(
-                                          value: _serviceType, // ignore: deprecated_member_use
+                                          value:
+                                              _serviceType, // ignore: deprecated_member_use
                                           decoration: InputDecoration(
                                             labelText: l10n.serviceType,
                                             filled: true,
@@ -152,9 +155,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                                 in DemoData.serviceTypes)
                                               DropdownMenuItem(
                                                 value: s.$1,
-                                                child: Text(
-                                                  isAr ? s.$3 : s.$2,
-                                                ),
+                                                child: Text(isAr ? s.$3 : s.$2),
                                               ),
                                           ],
                                           onChanged: (v) =>
@@ -165,7 +166,8 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                         ),
                                         const SizedBox(height: 16),
                                         DropdownButtonFormField<String>(
-                                          value: _delivery, // ignore: deprecated_member_use
+                                          value:
+                                              _delivery, // ignore: deprecated_member_use
                                           decoration: InputDecoration(
                                             labelText: l10n.deliveryMethod,
                                             filled: true,
@@ -175,9 +177,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                                 in DemoData.deliveryMethods)
                                               DropdownMenuItem(
                                                 value: d.$1,
-                                                child: Text(
-                                                  isAr ? d.$3 : d.$2,
-                                                ),
+                                                child: Text(isAr ? d.$3 : d.$2),
                                               ),
                                           ],
                                           onChanged: (v) =>
@@ -191,7 +191,8 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                           onPressed: () async {
                                             final d = await showDatePicker(
                                               context: context,
-                                              initialDate: _neededBy ??
+                                              initialDate:
+                                                  _neededBy ??
                                                   DateTime.now().add(
                                                     const Duration(days: 3),
                                                   ),
@@ -211,9 +212,9 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                             _neededBy == null
                                                 ? l10n.serviceRequestNeededBy
                                                 : _neededBy!
-                                                    .toIso8601String()
-                                                    .split('T')
-                                                    .first,
+                                                      .toIso8601String()
+                                                      .split('T')
+                                                      .first,
                                           ),
                                         ),
                                         const SizedBox(height: 20),
@@ -224,7 +225,8 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                           textCapitalization:
                                               TextCapitalization.sentences,
                                           decoration: InputDecoration(
-                                            labelText: l10n.serviceRequestDetails,
+                                            labelText:
+                                                l10n.serviceRequestDetails,
                                             hintText:
                                                 l10n.serviceRequestDetailsHint,
                                             alignLabelWithHint: true,
@@ -232,8 +234,8 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 24),
                                         HapticFilledButton(

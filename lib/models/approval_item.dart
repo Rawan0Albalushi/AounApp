@@ -21,7 +21,9 @@ class ApprovalItem {
       isAr && titleAr != null && titleAr!.isNotEmpty ? titleAr! : title;
 
   String localizedSubtitle(bool isAr) =>
-      isAr && subtitleAr != null && subtitleAr!.isNotEmpty ? subtitleAr! : subtitle;
+      isAr && subtitleAr != null && subtitleAr!.isNotEmpty
+      ? subtitleAr!
+      : subtitle;
 
   /// When the title follows `Category · Person`, returns both parts; otherwise null.
   (String category, String person)? splitTitleParts(bool isAr) {

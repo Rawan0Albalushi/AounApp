@@ -92,10 +92,12 @@ class _WeListenViewState extends State<WeListenView> {
                                     children: [
                                       DecoratedBox(
                                         decoration: BoxDecoration(
-                                          color: AppColors.royalGold
-                                              .withValues(alpha: 0.14),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          color: AppColors.royalGold.withValues(
+                                            alpha: 0.14,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                         child: const Padding(
                                           padding: EdgeInsets.all(10),
@@ -112,10 +114,10 @@ class _WeListenViewState extends State<WeListenView> {
                                           l10n.weListenIntro,
                                           style: theme.textTheme.bodyMedium
                                               ?.copyWith(
-                                            height: 1.45,
-                                            color: scheme.onSurface
-                                                .withValues(alpha: 0.88),
-                                          ),
+                                                height: 1.45,
+                                                color: scheme.onSurface
+                                                    .withValues(alpha: 0.88),
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -134,7 +136,8 @@ class _WeListenViewState extends State<WeListenView> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         DropdownButtonFormField<String>(
-                                          value: _category, // ignore: deprecated_member_use
+                                          value:
+                                              _category, // ignore: deprecated_member_use
                                           decoration: InputDecoration(
                                             labelText: l10n.feedbackCategory,
                                             filled: true,
@@ -144,9 +147,7 @@ class _WeListenViewState extends State<WeListenView> {
                                                 in DemoData.feedbackCategories)
                                               DropdownMenuItem(
                                                 value: c.$1,
-                                                child: Text(
-                                                  isAr ? c.$3 : c.$2,
-                                                ),
+                                                child: Text(isAr ? c.$3 : c.$2),
                                               ),
                                           ],
                                           onChanged: (v) =>
@@ -160,8 +161,8 @@ class _WeListenViewState extends State<WeListenView> {
                                           l10n.priority,
                                           style: theme.textTheme.titleSmall
                                               ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
                                         const SizedBox(height: 10),
                                         SegmentedButton<String>(
@@ -173,8 +174,7 @@ class _WeListenViewState extends State<WeListenView> {
                                             ),
                                             ButtonSegment(
                                               value: 'medium',
-                                              label:
-                                                  Text(l10n.priorityMedium),
+                                              label: Text(l10n.priorityMedium),
                                             ),
                                             ButtonSegment(
                                               value: 'high',
@@ -183,8 +183,7 @@ class _WeListenViewState extends State<WeListenView> {
                                           ],
                                           selected: {_priority},
                                           onSelectionChanged: (s) {
-                                            setState(
-                                                () => _priority = s.first);
+                                            setState(() => _priority = s.first);
                                           },
                                         ),
                                         const SizedBox(height: 20),
@@ -202,8 +201,8 @@ class _WeListenViewState extends State<WeListenView> {
                                           ),
                                           validator: (v) =>
                                               (v == null || v.trim().isEmpty)
-                                                  ? l10n.validationRequired
-                                                  : null,
+                                              ? l10n.validationRequired
+                                              : null,
                                         ),
                                         const SizedBox(height: 24),
                                         HapticFilledButton(

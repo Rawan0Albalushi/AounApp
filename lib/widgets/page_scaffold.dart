@@ -63,10 +63,7 @@ class PageScaffold extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        CorporateHeroHeader(
-                          title: title!,
-                          actions: actions,
-                        ),
+                        CorporateHeroHeader(title: title!, actions: actions),
                         CorporateHeroOverlap(
                           padding: EdgeInsets.fromLTRB(
                             pageInsets.left,

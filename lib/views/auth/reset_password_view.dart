@@ -52,8 +52,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: ConstrainedBox(
-                    constraints:
-                        const BoxConstraints(maxWidth: kAuthFormMaxWidth),
+                    constraints: const BoxConstraints(
+                      maxWidth: kAuthFormMaxWidth,
+                    ),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -83,7 +84,8 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                               if (v == null || v.isEmpty) {
                                 return l10n.validationRequired;
                               }
-                              if (v.length < 8) return l10n.validationMinPassword;
+                              if (v.length < 8)
+                                return l10n.validationMinPassword;
                               return null;
                             },
                           ),
@@ -118,10 +120,13 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                           const SizedBox(height: 28),
                           HapticFilledButton(
                             onPressed: () async {
-                              if (!(_formKey.currentState?.validate() ?? false)) {
+                              if (!(_formKey.currentState?.validate() ??
+                                  false)) {
                                 return;
                               }
-                              await context.read<AuthProvider>().completePasswordReset();
+                              await context
+                                  .read<AuthProvider>()
+                                  .completePasswordReset();
                               if (!context.mounted) return;
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                 AppRoutes.login,

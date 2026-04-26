@@ -28,7 +28,9 @@ class AnnouncementItem {
       isAr && titleAr != null && titleAr!.isNotEmpty ? titleAr! : title;
 
   String localizedSubtitle(bool isAr) =>
-      isAr && subtitleAr != null && subtitleAr!.isNotEmpty ? subtitleAr! : subtitle;
+      isAr && subtitleAr != null && subtitleAr!.isNotEmpty
+      ? subtitleAr!
+      : subtitle;
 
   String localizedAuthor(bool isAr) =>
       isAr && authorAr != null && authorAr!.isNotEmpty ? authorAr! : author;

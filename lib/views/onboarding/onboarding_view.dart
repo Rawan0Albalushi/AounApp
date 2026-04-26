@@ -63,58 +63,58 @@ class _OnboardingViewState extends State<OnboardingView> {
     return Scaffold(
       body: AppShellBackdrop(
         child: SafeArea(
-        child: Column(
-          children: [
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: TextButton(
-                style: TextButton.styleFrom(foregroundColor: AppColors.navy),
-                onPressed: () {
-                  context.read<OnboardingProvider>().completeOnboarding();
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.login);
-                },
-                child: Text(l10n.commonSkip),
+          child: Column(
+            children: [
+              Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton(
+                  style: TextButton.styleFrom(foregroundColor: AppColors.navy),
+                  onPressed: () {
+                    context.read<OnboardingProvider>().completeOnboarding();
+                    Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+                  },
+                  child: Text(l10n.commonSkip),
+                ),
               ),
-            ),
-            Expanded(
-              child: PageView.builder(
-                controller: _controller,
-                itemCount: pages.length,
-                onPageChanged: (i) => setState(() => _page = i),
-                itemBuilder: (_, i) => pages[i],
+              Expanded(
+                child: PageView.builder(
+                  controller: _controller,
+                  itemCount: pages.length,
+                  onPageChanged: (i) => setState(() => _page = i),
+                  itemBuilder: (_, i) => pages[i],
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                3,
-                (i) => AnimatedContainer(
-                  duration: const Duration(milliseconds: 250),
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  height: 8,
-                  width: _page == i ? 28 : 8,
-                  decoration: BoxDecoration(
-                    color: _page == i ? AppColors.royalGold : scheme.outline,
-                    borderRadius: BorderRadius.circular(8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  3,
+                  (i) => AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    height: 8,
+                    width: _page == i ? 28 : 8,
+                    decoration: BoxDecoration(
+                      color: _page == i ? AppColors.royalGold : scheme.outline,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
-              child: SizedBox(
-                width: double.infinity,
-                child: HapticFilledButton(
-                  onPressed: () => _next(l10n),
-                  child: Text(
-                    _page == 2 ? l10n.commonContinue : l10n.commonNext,
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: HapticFilledButton(
+                    onPressed: () => _next(l10n),
+                    child: Text(
+                      _page == 2 ? l10n.commonContinue : l10n.commonNext,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
         ),
       ),
     );
@@ -164,18 +164,18 @@ class _OnboardPage extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.navy,
-                ),
+              fontWeight: FontWeight.w700,
+              color: AppColors.navy,
+            ),
           ),
           const SizedBox(height: 16),
           Text(
             body,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: scheme.onSurface.withValues(alpha: 0.75),
-                  height: 1.45,
-                ),
+              color: scheme.onSurface.withValues(alpha: 0.75),
+              height: 1.45,
+            ),
           ),
         ],
       ),

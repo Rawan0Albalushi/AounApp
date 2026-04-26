@@ -36,8 +36,7 @@ class ApprovalsView extends StatelessWidget {
                   Positioned.fill(
                     child: Padding(
                       padding: EdgeInsets.only(
-                        top: kCorporateHeroHeaderHeight -
-                            kCorporateHeroOverlap,
+                        top: kCorporateHeroHeaderHeight - kCorporateHeroOverlap,
                       ),
                       child: TabBarView(
                         children: [
@@ -71,16 +70,18 @@ class ApprovalsView extends StatelessWidget {
                           tooltip: l10n.announcementsTitle,
                           icon: const Icon(Icons.campaign_outlined),
                           color: Colors.white,
-                          onPressed: () => Navigator.of(context)
-                              .pushNamed(AppRoutes.managerialAnnouncements),
+                          onPressed: () => Navigator.of(
+                            context,
+                          ).pushNamed(AppRoutes.managerialAnnouncements),
                         ),
                       ],
                       bottom: TabBar(
                         indicatorColor: AppColors.royalGold,
                         indicatorWeight: 3,
                         labelColor: Colors.white,
-                        unselectedLabelColor:
-                            Colors.white.withValues(alpha: 0.65),
+                        unselectedLabelColor: Colors.white.withValues(
+                          alpha: 0.65,
+                        ),
                         tabs: [
                           Tab(text: l10n.tabLeaves),
                           Tab(text: l10n.tabAttendanceExemptions),
@@ -104,8 +105,11 @@ String _firstChar(String s) {
 }
 
 String _initialsFromName(String name) {
-  final parts =
-      name.trim().split(RegExp(r'\s+')).where((s) => s.isNotEmpty).toList();
+  final parts = name
+      .trim()
+      .split(RegExp(r'\s+'))
+      .where((s) => s.isNotEmpty)
+      .toList();
   if (parts.isEmpty) return '?';
   if (parts.length == 1) {
     final c = _firstChar(parts[0]);
@@ -190,8 +194,10 @@ class _ApprovalList extends StatelessWidget {
                       ],
                       if (items.isEmpty)
                         SizedBox(
-                          height: (constraints.maxHeight * 0.52)
-                              .clamp(280.0, 520.0),
+                          height: (constraints.maxHeight * 0.52).clamp(
+                            280.0,
+                            520.0,
+                          ),
                           child: EmptyState(
                             icon: emptyIcon,
                             title: emptyTitle,
@@ -255,9 +261,9 @@ class _PendingSummaryBar extends StatelessWidget {
               child: Text(
                 label,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.statusPendingFg,
-                    ),
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.statusPendingFg,
+                ),
               ),
             ),
           ],
@@ -305,9 +311,7 @@ class _ApprovalCard extends StatelessWidget {
       shadowColor: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: BorderSide(
-          color: scheme.outlineVariant.withValues(alpha: 0.55),
-        ),
+        side: BorderSide(color: scheme.outlineVariant.withValues(alpha: 0.55)),
       ),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -315,10 +319,7 @@ class _ApprovalCard extends StatelessWidget {
           lightImpact();
           Navigator.of(context).pushNamed(
             AppRoutes.managerialApprovalDetail,
-            arguments: {
-              'title': detailTitle,
-              'item': item,
-            },
+            arguments: {'title': detailTitle, 'item': item},
           );
         },
         child: Padding(
@@ -333,9 +334,9 @@ class _ApprovalCard extends StatelessWidget {
                 child: Text(
                   initials,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: AppColors.goldDark,
-                      ),
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.goldDark,
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
@@ -357,8 +358,9 @@ class _ApprovalCard extends StatelessWidget {
                                           .textTheme
                                           .labelMedium
                                           ?.copyWith(
-                                            color: scheme.onSurface
-                                                .withValues(alpha: 0.55),
+                                            color: scheme.onSurface.withValues(
+                                              alpha: 0.55,
+                                            ),
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
@@ -377,12 +379,8 @@ class _ApprovalCard extends StatelessWidget {
                                 )
                               : Text(
                                   item.localizedTitle(isAr),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                  style: Theme.of(context).textTheme.titleSmall
+                                      ?.copyWith(fontWeight: FontWeight.w700),
                                 ),
                         ),
                         const SizedBox(width: 8),
@@ -399,9 +397,9 @@ class _ApprovalCard extends StatelessWidget {
                     Text(
                       item.localizedSubtitle(isAr),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: scheme.onSurface.withValues(alpha: 0.68),
-                            height: 1.35,
-                          ),
+                        color: scheme.onSurface.withValues(alpha: 0.68),
+                        height: 1.35,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Wrap(
@@ -418,10 +416,7 @@ class _ApprovalCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Icon(
-                chevron,
-                color: scheme.onSurface.withValues(alpha: 0.35),
-              ),
+              Icon(chevron, color: scheme.onSurface.withValues(alpha: 0.35)),
             ],
           ),
         ),
@@ -453,9 +448,9 @@ class _InfoChip extends StatelessWidget {
           Text(
             label,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: scheme.onSurface.withValues(alpha: 0.8),
-                ),
+              fontWeight: FontWeight.w600,
+              color: scheme.onSurface.withValues(alpha: 0.8),
+            ),
           ),
         ],
       ),

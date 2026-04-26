@@ -31,13 +31,15 @@ class SettingsView extends StatelessWidget {
                 child: Text(
                   l10n.selectLanguage,
                   style: Theme.of(ctx).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               ListTile(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 4,
+                ),
                 leading: Icon(
                   settings.locale.languageCode == 'ar'
                       ? Icons.radio_button_checked
@@ -51,8 +53,10 @@ class SettingsView extends StatelessWidget {
                 },
               ),
               ListTile(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 4,
+                ),
                 leading: Icon(
                   settings.locale.languageCode == 'en'
                       ? Icons.radio_button_checked
@@ -98,10 +102,9 @@ class SettingsView extends StatelessWidget {
     if (ok != true || !context.mounted) return;
     await context.read<AuthProvider>().logout();
     if (!context.mounted) return;
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      AppRoutes.login,
-      (r) => false,
-    );
+    Navigator.of(
+      context,
+    ).pushNamedAndRemoveUntil(AppRoutes.login, (r) => false);
   }
 
   @override
@@ -121,132 +124,147 @@ class SettingsView extends StatelessWidget {
         child: SafeArea(
           top: false,
           child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Align(
-            alignment: Alignment.topCenter,
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                bottom: pageInsets.bottom + mainShellFloatingNavBottomPadding,
-              ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxWidth: maxW),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    CorporateHeroHeader(
-                      title: l10n.settingsTitle,
-                      subtitle: l10n.appTitle,
-                      onBackFallback: onBackFallback,
-                    ),
-                    CorporateHeroOverlap(
-                      padding: EdgeInsets.fromLTRB(
-                        pageInsets.left,
-                        0,
-                        pageInsets.right,
-                        0,
-                      ),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            const SizedBox(
-                              height: kCorporateHeroBodyTopSpacing,
-                            ),
-                            Card(
-                              clipBehavior: Clip.antiAlias,
-                              child: Column(
-                                children: [
-                                  _SettingsTile(
-                                    icon: Icons.groups_outlined,
-                                    iconBg: AppColors.royalGold
-                                        .withValues(alpha: 0.2),
-                                    title: l10n.settingsAboutUs,
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed(AppRoutes.aboutUs),
-                                  ),
-                                  Divider(
-                                    height: 1,
-                                    indent: 68,
-                                    color: scheme.outlineVariant
-                                        .withValues(alpha: 0.5),
-                                  ),
-                                  _SettingsTile(
-                                    icon: Icons.language_rounded,
-                                    iconBg: AppColors.royalGold
-                                        .withValues(alpha: 0.2),
-                                    title: l10n.language,
-                                    subtitle: langLabel,
-                                    onTap: () => _showLanguageSheet(
-                                        context, settings),
-                                  ),
-                                  Divider(
-                                    height: 1,
-                                    indent: 68,
-                                    color: scheme.outlineVariant
-                                        .withValues(alpha: 0.5),
-                                  ),
-                                  _SettingsTile(
-                                    icon: Icons.gavel_outlined,
-                                    iconBg: AppColors.royalGold
-                                        .withValues(alpha: 0.2),
-                                    title: l10n.settingsTermsOfService,
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed(AppRoutes.termsOfService),
-                                  ),
-                                  Divider(
-                                    height: 1,
-                                    indent: 68,
-                                    color: scheme.outlineVariant
-                                        .withValues(alpha: 0.5),
-                                  ),
-                                  _SettingsTile(
-                                    icon: Icons.lock_reset_rounded,
-                                    iconBg: AppColors.royalGold
-                                        .withValues(alpha: 0.2),
-                                    title: l10n.settingsChangePassword,
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed(AppRoutes.changePassword),
-                                  ),
-                                ],
+            builder: (context, constraints) {
+              return Align(
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    bottom:
+                        pageInsets.bottom + mainShellFloatingNavBottomPadding,
+                  ),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: maxW),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        CorporateHeroHeader(
+                          title: l10n.settingsTitle,
+                          subtitle: l10n.appTitle,
+                          onBackFallback: onBackFallback,
+                        ),
+                        CorporateHeroOverlap(
+                          padding: EdgeInsets.fromLTRB(
+                            pageInsets.left,
+                            0,
+                            pageInsets.right,
+                            0,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              const SizedBox(
+                                height: kCorporateHeroBodyTopSpacing,
                               ),
-                            ),
-                            const SizedBox(height: 20),
-                            FilledButton.tonal(
-                              style: FilledButton.styleFrom(
-                                foregroundColor: scheme.error,
-                                backgroundColor:
-                                    scheme.error.withValues(alpha: 0.12),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 14),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                              Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Column(
+                                  children: [
+                                    _SettingsTile(
+                                      icon: Icons.groups_outlined,
+                                      iconBg: AppColors.royalGold.withValues(
+                                        alpha: 0.2,
+                                      ),
+                                      title: l10n.settingsAboutUs,
+                                      onTap: () => Navigator.of(
+                                        context,
+                                      ).pushNamed(AppRoutes.aboutUs),
+                                    ),
+                                    Divider(
+                                      height: 1,
+                                      indent: 68,
+                                      color: scheme.outlineVariant.withValues(
+                                        alpha: 0.5,
+                                      ),
+                                    ),
+                                    _SettingsTile(
+                                      icon: Icons.language_rounded,
+                                      iconBg: AppColors.royalGold.withValues(
+                                        alpha: 0.2,
+                                      ),
+                                      title: l10n.language,
+                                      subtitle: langLabel,
+                                      onTap: () =>
+                                          _showLanguageSheet(context, settings),
+                                    ),
+                                    Divider(
+                                      height: 1,
+                                      indent: 68,
+                                      color: scheme.outlineVariant.withValues(
+                                        alpha: 0.5,
+                                      ),
+                                    ),
+                                    _SettingsTile(
+                                      icon: Icons.gavel_outlined,
+                                      iconBg: AppColors.royalGold.withValues(
+                                        alpha: 0.2,
+                                      ),
+                                      title: l10n.settingsTermsOfService,
+                                      onTap: () => Navigator.of(
+                                        context,
+                                      ).pushNamed(AppRoutes.termsOfService),
+                                    ),
+                                    Divider(
+                                      height: 1,
+                                      indent: 68,
+                                      color: scheme.outlineVariant.withValues(
+                                        alpha: 0.5,
+                                      ),
+                                    ),
+                                    _SettingsTile(
+                                      icon: Icons.lock_reset_rounded,
+                                      iconBg: AppColors.royalGold.withValues(
+                                        alpha: 0.2,
+                                      ),
+                                      title: l10n.settingsChangePassword,
+                                      onTap: () => Navigator.of(
+                                        context,
+                                      ).pushNamed(AppRoutes.changePassword),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              onPressed: () => _confirmSignOut(context),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.logout_rounded,
-                                      color: scheme.error),
-                                  const SizedBox(width: 10),
-                                  Text(
-                                    l10n.signOut,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
+                              const SizedBox(height: 20),
+                              FilledButton.tonal(
+                                style: FilledButton.styleFrom(
+                                  foregroundColor: scheme.error,
+                                  backgroundColor: scheme.error.withValues(
+                                    alpha: 0.12,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 14,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                onPressed: () => _confirmSignOut(context),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.logout_rounded,
                                       color: scheme.error,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      l10n.signOut,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: scheme.error,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                  ],
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          );
-        },
+              );
+            },
           ),
         ),
       ),
@@ -298,17 +316,16 @@ class _SettingsTile extends StatelessWidget {
                     Text(
                       title,
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     if (subtitle != null) ...[
                       const SizedBox(height: 2),
                       Text(
                         subtitle!,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color:
-                                  scheme.onSurface.withValues(alpha: 0.55),
-                            ),
+                          color: scheme.onSurface.withValues(alpha: 0.55),
+                        ),
                       ),
                     ],
                   ],

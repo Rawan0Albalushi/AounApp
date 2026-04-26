@@ -147,9 +147,9 @@ class AuthHeroHeader extends StatelessWidget {
 /// Section title on auth pages (no card).
 TextStyle? authSectionTitleStyle(BuildContext context) {
   return Theme.of(context).textTheme.titleLarge?.copyWith(
-        color: AppColors.navy,
-        fontWeight: FontWeight.w700,
-      );
+    color: AppColors.navy,
+    fontWeight: FontWeight.w700,
+  );
 }
 
 /// Muted subtitle under section title.
@@ -171,10 +171,10 @@ Widget authDemoHintBanner({
       text,
       textAlign: TextAlign.center,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.goldDark,
-            fontWeight: FontWeight.w600,
-            height: 1.35,
-          ),
+        color: AppColors.goldDark,
+        fontWeight: FontWeight.w600,
+        height: 1.35,
+      ),
     ),
   );
 }
