@@ -36,6 +36,7 @@ class DashboardHomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final topInset = MediaQuery.paddingOf(context).top;
+    final theme = Theme.of(context);
     return Container(
       height: 240,
       decoration: BoxDecoration(
@@ -56,78 +57,90 @@ class DashboardHomeHeader extends StatelessWidget {
         boxShadow: dashboardCardShadow(),
       ),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(18, topInset + 20, 18, 16),
-        child: Row(
+        padding: EdgeInsets.fromLTRB(20, topInset + 22, 20, 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: AppColors.royalGold, width: 2),
-              ),
-              child: const CircleAvatar(
-                radius: 28,
-                backgroundColor: Color(0xFFE7ECF4),
-                child: Icon(
-                  Icons.person_rounded,
-                  color: AppColors.navy,
-                  size: 30,
-                ),
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.sampleUserName,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    l10n.sampleJobTitle,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.white.withValues(alpha: 0.9),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE2F3DE),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Text(
-                      l10n.announcementsStatusActive,
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.green.shade800,
-                        fontWeight: FontWeight.w600,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppColors.royalGold,
+                            width: 2,
+                          ),
+                        ),
+                        child: const CircleAvatar(
+                          radius: 28,
+                          backgroundColor: Color(0xFFE7ECF4),
+                          child: Icon(
+                            Icons.person_rounded,
+                            color: AppColors.navy,
+                            size: 30,
+                          ),
+                        ),
                       ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              l10n.sampleUserName,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                height: 1.25,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              l10n.sampleJobTitle,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: Colors.white.withValues(alpha: 0.9),
+                                height: 1.25,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 10),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+                  ),
+                  child: IconButton(
+                    tooltip: l10n.notifications,
+                    onPressed: onNotificationsTap,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints.tightFor(
+                      width: 44,
+                      height: 44,
+                    ),
+                    icon: const Icon(
+                      Icons.notifications_none_rounded,
+                      color: Colors.white,
+                      size: 24,
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 4),
-            IconButton(
-              tooltip: l10n.notifications,
-              onPressed: onNotificationsTap,
-              icon: const Icon(
-                Icons.notifications_none_rounded,
-                color: Colors.white,
-                size: 28,
-              ),
+                ),
+              ],
             ),
           ],
         ),
