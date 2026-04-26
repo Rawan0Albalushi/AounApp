@@ -69,6 +69,67 @@ class _CreateTaskViewState extends State<CreateTaskView> {
     );
   }
 
+  (String, String, String, String, String)? _employeeById(String? id) {
+    if (id == null) return null;
+    for (final employee in DemoData.employees) {
+      if (employee.$1 == id) return employee;
+    }
+    return null;
+  }
+
+  Future<String?> _showEmployeePicker({
+    required bool isAr,
+    required ThemeData theme,
+    required ColorScheme scheme,
+  }) {
+    return showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) {
+        return SafeArea(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 520),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                  child: Text(
+                    AppLocalizations.of(context).assignTo,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                for (final e in DemoData.employees)
+                  ListTile(
+                    title: Text(
+                      isAr ? e.$3 : e.$2,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(
+                      isAr ? e.$5 : e.$4,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    trailing: _employee == e.$1
+                        ? const Icon(Icons.check_circle, color: AppColors.navy)
+                        : Icon(
+                            Icons.circle_outlined,
+                            color: scheme.onSurface.withValues(alpha: 0.4),
+                          ),
+                    onTap: () => Navigator.of(context).pop(e.$1),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -76,6 +137,13 @@ class _CreateTaskViewState extends State<CreateTaskView> {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final tasks = context.watch<TaskProvider>();
+    final employee = _employeeById(_employee);
+    final selectedEmployeeName = employee == null
+        ? null
+        : (isAr ? employee.$3 : employee.$2);
+    final selectedEmployeeDept = employee == null
+        ? null
+        : (isAr ? employee.$5 : employee.$4);
 
     final pageInsets = pagePadding(context);
     final maxW = contentMaxWidth(context);
@@ -166,26 +234,82 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.stretch,
                                       children: [
-                                        DropdownButtonFormField<String>(
+                                        FormField<String>(
                                           initialValue: _employee,
-                                          decoration: InputDecoration(
-                                            labelText: l10n.assignTo,
-                                            filled: true,
-                                          ),
-                                          items: [
-                                            for (final e in DemoData.employees)
-                                              DropdownMenuItem(
-                                                value: e.$1,
-                                                child: Text(
-                                                  '${isAr ? e.$3 : e.$2} · ${isAr ? e.$5 : e.$4}',
-                                                ),
-                                              ),
-                                          ],
-                                          onChanged: (v) =>
-                                              setState(() => _employee = v),
-                                          validator: (v) => v == null
+                                          validator: (v) => (v ?? _employee) == null
                                               ? l10n.validationRequired
                                               : null,
+                                          builder: (field) {
+                                            return InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              onTap: () async {
+                                                final selected =
+                                                    await _showEmployeePicker(
+                                                      isAr: isAr,
+                                                      theme: theme,
+                                                      scheme: scheme,
+                                                    );
+                                                if (selected == null) return;
+                                                setState(
+                                                  () => _employee = selected,
+                                                );
+                                                field.didChange(selected);
+                                                field.validate();
+                                              },
+                                              child: InputDecorator(
+                                                isEmpty:
+                                                    selectedEmployeeName == null,
+                                                decoration: InputDecoration(
+                                                  labelText: l10n.assignTo,
+                                                  filled: true,
+                                                  errorText: field.errorText,
+                                                  suffixIcon: const Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                  ),
+                                                ),
+                                                child:
+                                                    selectedEmployeeName == null
+                                                    ? null
+                                                    : Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            selectedEmployeeName,
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                          ),
+                                                          if (selectedEmployeeDept !=
+                                                              null)
+                                                            Text(
+                                                              selectedEmployeeDept,
+                                                              maxLines: 1,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              style: theme
+                                                                  .textTheme
+                                                                  .bodySmall
+                                                                  ?.copyWith(
+                                                                    color: scheme
+                                                                        .onSurface
+                                                                        .withValues(
+                                                                          alpha:
+                                                                              0.7,
+                                                                        ),
+                                                                  ),
+                                                            ),
+                                                        ],
+                                                      ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                         const SizedBox(height: 16),
                                         TextFormField(

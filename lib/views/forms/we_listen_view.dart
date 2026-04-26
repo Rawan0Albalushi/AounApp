@@ -39,6 +39,61 @@ class _WeListenViewState extends State<WeListenView> {
     Navigator.of(context).pop();
   }
 
+  String _labelForCategory(String value, bool isAr) {
+    for (final c in DemoData.feedbackCategories) {
+      if (c.$1 == value) return isAr ? c.$3 : c.$2;
+    }
+    return value;
+  }
+
+  Future<String?> _showCategoryPicker({
+    required bool isAr,
+    required ColorScheme scheme,
+    required AppLocalizations l10n,
+  }) {
+    return showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) {
+        return SafeArea(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 520),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                  child: Text(
+                    l10n.feedbackCategory,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                for (final c in DemoData.feedbackCategories)
+                  ListTile(
+                    title: Text(
+                      isAr ? c.$3 : c.$2,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    trailing: _category == c.$1
+                        ? const Icon(Icons.check_circle, color: AppColors.navy)
+                        : Icon(
+                            Icons.circle_outlined,
+                            color: scheme.onSurface.withValues(alpha: 0.4),
+                          ),
+                    onTap: () => Navigator.of(context).pop(c.$1),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -135,25 +190,56 @@ class _WeListenViewState extends State<WeListenView> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.stretch,
                                       children: [
-                                        DropdownButtonFormField<String>(
+                                        FormField<String>(
                                           initialValue: _category,
-                                          decoration: InputDecoration(
-                                            labelText: l10n.feedbackCategory,
-                                            filled: true,
-                                          ),
-                                          items: [
-                                            for (final c
-                                                in DemoData.feedbackCategories)
-                                              DropdownMenuItem(
-                                                value: c.$1,
-                                                child: Text(isAr ? c.$3 : c.$2),
-                                              ),
-                                          ],
-                                          onChanged: (v) =>
-                                              setState(() => _category = v),
-                                          validator: (v) => v == null
+                                          validator: (v) =>
+                                              (v ?? _category) == null
                                               ? l10n.validationRequired
                                               : null,
+                                          builder: (field) {
+                                            final selected = _category;
+                                            return InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              onTap: () async {
+                                                final picked =
+                                                    await _showCategoryPicker(
+                                                      isAr: isAr,
+                                                      scheme: scheme,
+                                                      l10n: l10n,
+                                                    );
+                                                if (picked == null) return;
+                                                setState(
+                                                  () => _category = picked,
+                                                );
+                                                field.didChange(picked);
+                                                field.validate();
+                                              },
+                                              child: InputDecorator(
+                                                isEmpty: selected == null,
+                                                decoration: InputDecoration(
+                                                  labelText:
+                                                      l10n.feedbackCategory,
+                                                  filled: true,
+                                                  errorText: field.errorText,
+                                                  suffixIcon: const Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                  ),
+                                                ),
+                                                child: selected == null
+                                                    ? null
+                                                    : Text(
+                                                        _labelForCategory(
+                                                          selected,
+                                                          isAr,
+                                                        ),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                         const SizedBox(height: 20),
                                         Text(

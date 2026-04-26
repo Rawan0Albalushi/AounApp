@@ -47,6 +47,70 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
     Navigator.of(context).pop();
   }
 
+  String _labelForServiceType(String value, bool isAr) {
+    for (final s in DemoData.serviceTypes) {
+      if (s.$1 == value) return isAr ? s.$3 : s.$2;
+    }
+    return value;
+  }
+
+  String _labelForDeliveryMethod(String value, bool isAr) {
+    for (final d in DemoData.deliveryMethods) {
+      if (d.$1 == value) return isAr ? d.$3 : d.$2;
+    }
+    return value;
+  }
+
+  Future<String?> _showOptionsPicker({
+    required String title,
+    required List<(String, String, String)> options,
+    required String? selectedValue,
+    required bool isAr,
+    required ColorScheme scheme,
+  }) {
+    return showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) {
+        return SafeArea(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 520),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                for (final option in options)
+                  ListTile(
+                    title: Text(
+                      isAr ? option.$3 : option.$2,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    trailing: selectedValue == option.$1
+                        ? const Icon(Icons.check_circle, color: AppColors.navy)
+                        : Icon(
+                            Icons.circle_outlined,
+                            color: scheme.onSurface.withValues(alpha: 0.4),
+                          ),
+                    onTap: () => Navigator.of(context).pop(option.$1),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -143,46 +207,114 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.stretch,
                                       children: [
-                                        DropdownButtonFormField<String>(
+                                        FormField<String>(
                                           initialValue: _serviceType,
-                                          decoration: InputDecoration(
-                                            labelText: l10n.serviceType,
-                                            filled: true,
-                                          ),
-                                          items: [
-                                            for (final s
-                                                in DemoData.serviceTypes)
-                                              DropdownMenuItem(
-                                                value: s.$1,
-                                                child: Text(isAr ? s.$3 : s.$2),
-                                              ),
-                                          ],
-                                          onChanged: (v) =>
-                                              setState(() => _serviceType = v),
-                                          validator: (v) => v == null
+                                          validator: (v) => (v ?? _serviceType) ==
+                                                  null
                                               ? l10n.validationRequired
                                               : null,
+                                          builder: (field) {
+                                            final selected = _serviceType;
+                                            return InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              onTap: () async {
+                                                final picked =
+                                                    await _showOptionsPicker(
+                                                      title: l10n.serviceType,
+                                                      options: DemoData
+                                                          .serviceTypes,
+                                                      selectedValue: selected,
+                                                      isAr: isAr,
+                                                      scheme: scheme,
+                                                    );
+                                                if (picked == null) return;
+                                                setState(
+                                                  () => _serviceType = picked,
+                                                );
+                                                field.didChange(picked);
+                                                field.validate();
+                                              },
+                                              child: InputDecorator(
+                                                isEmpty: selected == null,
+                                                decoration: InputDecoration(
+                                                  labelText: l10n.serviceType,
+                                                  filled: true,
+                                                  errorText: field.errorText,
+                                                  suffixIcon: const Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                  ),
+                                                ),
+                                                child: selected == null
+                                                    ? null
+                                                    : Text(
+                                                        _labelForServiceType(
+                                                          selected,
+                                                          isAr,
+                                                        ),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                         const SizedBox(height: 16),
-                                        DropdownButtonFormField<String>(
+                                        FormField<String>(
                                           initialValue: _delivery,
-                                          decoration: InputDecoration(
-                                            labelText: l10n.deliveryMethod,
-                                            filled: true,
-                                          ),
-                                          items: [
-                                            for (final d
-                                                in DemoData.deliveryMethods)
-                                              DropdownMenuItem(
-                                                value: d.$1,
-                                                child: Text(isAr ? d.$3 : d.$2),
-                                              ),
-                                          ],
-                                          onChanged: (v) =>
-                                              setState(() => _delivery = v),
-                                          validator: (v) => v == null
+                                          validator: (v) => (v ?? _delivery) ==
+                                                  null
                                               ? l10n.validationRequired
                                               : null,
+                                          builder: (field) {
+                                            final selected = _delivery;
+                                            return InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              onTap: () async {
+                                                final picked =
+                                                    await _showOptionsPicker(
+                                                      title:
+                                                          l10n.deliveryMethod,
+                                                      options: DemoData
+                                                          .deliveryMethods,
+                                                      selectedValue: selected,
+                                                      isAr: isAr,
+                                                      scheme: scheme,
+                                                    );
+                                                if (picked == null) return;
+                                                setState(
+                                                  () => _delivery = picked,
+                                                );
+                                                field.didChange(picked);
+                                                field.validate();
+                                              },
+                                              child: InputDecorator(
+                                                isEmpty: selected == null,
+                                                decoration: InputDecoration(
+                                                  labelText:
+                                                      l10n.deliveryMethod,
+                                                  filled: true,
+                                                  errorText: field.errorText,
+                                                  suffixIcon: const Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                  ),
+                                                ),
+                                                child: selected == null
+                                                    ? null
+                                                    : Text(
+                                                        _labelForDeliveryMethod(
+                                                          selected,
+                                                          isAr,
+                                                        ),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                         const SizedBox(height: 16),
                                         OutlinedButton.icon(

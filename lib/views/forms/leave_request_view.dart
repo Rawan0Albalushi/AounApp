@@ -34,6 +34,61 @@ class _LeaveRequestViewState extends State<LeaveRequestView> {
     Navigator.of(context).pop();
   }
 
+  String _labelForLeaveType(String value, bool isAr) {
+    for (final t in DemoData.leaveTypes) {
+      if (t.$1 == value) return isAr ? t.$3 : t.$2;
+    }
+    return value;
+  }
+
+  Future<String?> _showLeaveTypePicker({
+    required bool isAr,
+    required ColorScheme scheme,
+    required AppLocalizations l10n,
+  }) {
+    return showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) {
+        return SafeArea(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 520),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                  child: Text(
+                    l10n.leaveType,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                for (final t in DemoData.leaveTypes)
+                  ListTile(
+                    title: Text(
+                      isAr ? t.$3 : t.$2,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    trailing: _type == t.$1
+                        ? const Icon(Icons.check_circle, color: AppColors.navy)
+                        : Icon(
+                            Icons.circle_outlined,
+                            color: scheme.onSurface.withValues(alpha: 0.4),
+                          ),
+                    onTap: () => Navigator.of(context).pop(t.$1),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -189,24 +244,52 @@ class _LeaveRequestViewState extends State<LeaveRequestView> {
                                           ],
                                         ),
                                         const SizedBox(height: 20),
-                                        DropdownButtonFormField<String>(
+                                        FormField<String>(
                                           initialValue: _type,
-                                          decoration: InputDecoration(
-                                            labelText: l10n.leaveType,
-                                            filled: true,
-                                          ),
-                                          items: [
-                                            for (final t in DemoData.leaveTypes)
-                                              DropdownMenuItem(
-                                                value: t.$1,
-                                                child: Text(isAr ? t.$3 : t.$2),
-                                              ),
-                                          ],
-                                          onChanged: (v) =>
-                                              setState(() => _type = v),
-                                          validator: (v) => v == null
+                                          validator: (v) => (v ?? _type) == null
                                               ? l10n.validationRequired
                                               : null,
+                                          builder: (field) {
+                                            final selected = _type;
+                                            return InkWell(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              onTap: () async {
+                                                final picked =
+                                                    await _showLeaveTypePicker(
+                                                      isAr: isAr,
+                                                      scheme: scheme,
+                                                      l10n: l10n,
+                                                    );
+                                                if (picked == null) return;
+                                                setState(() => _type = picked);
+                                                field.didChange(picked);
+                                                field.validate();
+                                              },
+                                              child: InputDecorator(
+                                                isEmpty: selected == null,
+                                                decoration: InputDecoration(
+                                                  labelText: l10n.leaveType,
+                                                  filled: true,
+                                                  errorText: field.errorText,
+                                                  suffixIcon: const Icon(
+                                                    Icons.keyboard_arrow_down,
+                                                  ),
+                                                ),
+                                                child: selected == null
+                                                    ? null
+                                                    : Text(
+                                                        _labelForLeaveType(
+                                                          selected,
+                                                          isAr,
+                                                        ),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                         const SizedBox(height: 16),
                                         Row(
