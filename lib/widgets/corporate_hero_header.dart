@@ -5,7 +5,7 @@ import '../core/theme/app_colors.dart';
 import 'corporate_app_bar.dart';
 
 /// Hero header height aligned with [DashboardView] `_HomeHeader`.
-const double kCorporateHeroHeaderHeight = 240;
+const double kCorporateHeroHeaderHeight = 220;
 
 /// Overlap into the body (same as dashboard status cards at `top: 168`).
 const double kCorporateHeroOverlap = 72;

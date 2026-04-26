@@ -38,7 +38,7 @@ class DashboardHomeHeader extends StatelessWidget {
     final topInset = MediaQuery.paddingOf(context).top;
     final theme = Theme.of(context);
     return Container(
-      height: 240,
+      height: 220,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(34),

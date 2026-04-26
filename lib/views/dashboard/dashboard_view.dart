@@ -44,7 +44,7 @@ class _DashboardViewState extends State<DashboardView> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SizedBox(
-                          height: 316,
+                          height: 296,
                           child: Stack(
                             children: [
                               DashboardHomeHeader(
@@ -55,7 +55,7 @@ class _DashboardViewState extends State<DashboardView> {
                               Positioned(
                                 left: 20,
                                 right: 20,
-                                top: 168,
+                                top: 148,
                                 child: DashboardStatusCards(
                                   l10n: l10n,
                                   onAttendance: () => openAppRoute(
