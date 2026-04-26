@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/router/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../l10n/app_localizations.dart';
 import '../dashboard/dashboard_view.dart';
@@ -144,7 +143,3 @@ void openAppRoute(BuildContext context, String route) {
   Navigator.of(context).pushNamed(route);
 }
 
-/// Maps quick navigation from dashboard profile shortcut.
-class MainShellRoutes {
-  static const String name = AppRoutes.main;
-}

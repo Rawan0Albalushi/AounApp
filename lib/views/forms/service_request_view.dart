@@ -144,8 +144,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         DropdownButtonFormField<String>(
-                                          value:
-                                              _serviceType, // ignore: deprecated_member_use
+                                          initialValue: _serviceType,
                                           decoration: InputDecoration(
                                             labelText: l10n.serviceType,
                                             filled: true,
@@ -166,8 +165,7 @@ class _ServiceRequestViewState extends State<ServiceRequestView> {
                                         ),
                                         const SizedBox(height: 16),
                                         DropdownButtonFormField<String>(
-                                          value:
-                                              _delivery, // ignore: deprecated_member_use
+                                          initialValue: _delivery,
                                           decoration: InputDecoration(
                                             labelText: l10n.deliveryMethod,
                                             filled: true,

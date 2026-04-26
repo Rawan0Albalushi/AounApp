@@ -190,8 +190,7 @@ class _LeaveRequestViewState extends State<LeaveRequestView> {
                                         ),
                                         const SizedBox(height: 20),
                                         DropdownButtonFormField<String>(
-                                          value:
-                                              _type, // ignore: deprecated_member_use
+                                          initialValue: _type,
                                           decoration: InputDecoration(
                                             labelText: l10n.leaveType,
                                             filled: true,

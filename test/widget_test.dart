@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
+import 'package:aoun_app/core/auth/session_store.dart';
 import 'package:aoun_app/domain/entities/auth_session.dart';
 import 'package:aoun_app/domain/repositories/auth_repository.dart';
 import 'package:aoun_app/l10n/app_localizations.dart';
@@ -22,6 +23,23 @@ class _FakeAuthRepository implements AuthRepository {
   Future<void> logout() async {}
 }
 
+class _InMemorySessionStore implements SessionStore {
+  bool _authenticated = false;
+
+  @override
+  Future<void> clear() async {
+    _authenticated = false;
+  }
+
+  @override
+  Future<bool> isAuthenticated() async => _authenticated;
+
+  @override
+  Future<void> saveSession(AuthSession session) async {
+    _authenticated = session.accessToken.isNotEmpty;
+  }
+}
+
 void main() {
   testWidgets('Providers and localization smoke test', (
     WidgetTester tester,
@@ -32,7 +50,10 @@ void main() {
           ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
           ChangeNotifierProvider(create: (_) => OnboardingProvider()),
           ChangeNotifierProvider(
-            create: (_) => AuthProvider(authRepository: _FakeAuthRepository()),
+            create: (_) => AuthProvider(
+              authRepository: _FakeAuthRepository(),
+              sessionManager: _InMemorySessionStore(),
+            ),
           ),
         ],
         child: MaterialApp(

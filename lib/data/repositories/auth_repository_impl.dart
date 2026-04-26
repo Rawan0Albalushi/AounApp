@@ -19,7 +19,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
     required String password,
   }) async {
-    final session = AppEnv.authMode == 'api'
+    final session = AppEnv.isApiMode
         ? await _authApiService.login(email: email, password: password)
         : AuthSession(accessToken: 'demo-token-$email');
     await _tokenStorage.saveSession(session);
@@ -28,7 +28,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> logout() async {
-    if (AppEnv.authMode == 'api') {
+    if (AppEnv.isApiMode) {
       await _authApiService.logout();
     }
     await _tokenStorage.clear();

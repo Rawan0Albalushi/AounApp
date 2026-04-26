@@ -84,8 +84,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                               if (v == null || v.isEmpty) {
                                 return l10n.validationRequired;
                               }
-                              if (v.length < 8)
+                              if (v.length < 8) {
                                 return l10n.validationMinPassword;
+                              }
                               return null;
                             },
                           ),

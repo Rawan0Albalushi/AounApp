@@ -1,17 +1,18 @@
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import '../../../../core/auth/session_store.dart';
 import '../../../../domain/repositories/auth_repository.dart';
 
-const _kAuth = 'user_authenticated';
-
 class AuthProvider extends ChangeNotifier {
-  AuthProvider({required AuthRepository authRepository})
-    : _authRepository = authRepository {
+  AuthProvider({
+    required AuthRepository authRepository,
+    required SessionStore sessionManager,
+  }) : _authRepository = authRepository,
+       _sessionManager = sessionManager {
     _load();
   }
 
   final AuthRepository _authRepository;
+  final SessionStore _sessionManager;
 
   bool _authenticated = false;
   String? _pendingEmail;
@@ -22,8 +23,7 @@ class AuthProvider extends ChangeNotifier {
   String? get pendingOtpEmail => _pendingEmail;
 
   Future<void> _load() async {
-    final prefs = await SharedPreferences.getInstance();
-    _authenticated = prefs.getBool(_kAuth) ?? false;
+    _authenticated = await _sessionManager.isAuthenticated();
     _loaded = true;
     notifyListeners();
   }
@@ -35,20 +35,18 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     if (email.isEmpty || password.isEmpty) return;
-    await _authRepository.login(email: email, password: password);
+    final session = await _authRepository.login(email: email, password: password);
+    await _sessionManager.saveSession(session);
     _authenticated = true;
     _pendingEmail = null;
     notifyListeners();
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_kAuth, true);
   }
 
   Future<void> logout() async {
     await _authRepository.logout();
+    await _sessionManager.clear();
     _authenticated = false;
     notifyListeners();
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_kAuth, false);
   }
 
   Future<void> verifyOtp(String code) async {

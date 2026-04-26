@@ -12,7 +12,17 @@ class AuthApiService extends BaseApiService {
       '/auth/login',
       data: {'email': email, 'password': password},
     );
-    return _sessionFromJson(response.data ?? <String, dynamic>{});
+    final payload = response.data ?? <String, dynamic>{};
+    final body = payload['data'] is Map<String, dynamic>
+        ? payload['data'] as Map<String, dynamic>
+        : payload;
+    final session = _sessionFromJson(body);
+    toApiResponse<AuthSession>(
+      response: response,
+      data: session,
+      message: payload['message']?.toString(),
+    );
+    return session;
   }
 
   Future<void> logout() async {

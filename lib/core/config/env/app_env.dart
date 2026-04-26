@@ -23,6 +23,13 @@ class AppEnv {
   }
 
   /// demo = local mock behavior; api = backend-driven behavior.
-  static String get authMode =>
-      _env['AUTH_MODE']?.trim().toLowerCase() ?? 'demo';
+  static String get authMode {
+    final mode = _env['AUTH_MODE']?.trim().toLowerCase() ?? 'demo';
+    if (mode == 'api' || mode == 'demo') return mode;
+    return 'demo';
+  }
+
+  static bool get isDemoMode => authMode == 'demo';
+
+  static bool get isApiMode => authMode == 'api';
 }

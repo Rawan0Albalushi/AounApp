@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
+import '../../core/feedback/app_snackbar.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/report_item.dart';
-import '../../widgets/empty_state.dart';
 import '../../widgets/haptic_button.dart';
 import '../../widgets/app_shell_backdrop.dart';
 import '../../widgets/corporate_hero_header.dart';
 import '../../widgets/status_tag.dart';
+import '../../shared/widgets/async_state_view.dart';
 
 class ReportListPage extends StatefulWidget {
   const ReportListPage({
@@ -32,6 +33,28 @@ class ReportListPage extends StatefulWidget {
 
 class _ReportListPageState extends State<ReportListPage> {
   DateTimeRange? _range;
+  bool _isLoading = true;
+  bool _hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bootstrap();
+  }
+
+  Future<void> _bootstrap() async {
+    await Future<void>.delayed(const Duration(milliseconds: 350));
+    if (!mounted) return;
+    setState(() => _isLoading = false);
+  }
+
+  Future<void> _retryLoad() async {
+    setState(() {
+      _hasError = false;
+      _isLoading = true;
+    });
+    await _bootstrap();
+  }
 
   Future<void> _pickRange() async {
     final now = DateTime.now();
@@ -150,18 +173,25 @@ class _ReportListPageState extends State<ReportListPage> {
                                 ),
                               ),
                               const SizedBox(height: 20),
-                              if (widget.items.isEmpty)
-                                SizedBox(
-                                  height: constraints.maxHeight * 0.45,
-                                  child: EmptyState(icon: widget.emptyIcon),
-                                )
-                              else
-                                ...widget.items.map(
-                                  (e) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 12),
-                                    child: _ReportRow(item: e, l10n: l10n),
-                                  ),
+                              AsyncStateView(
+                                isLoading: _isLoading,
+                                hasError: _hasError,
+                                isEmpty: widget.items.isEmpty,
+                                onRetry: _retryLoad,
+                                emptyIcon: widget.emptyIcon,
+                                child: Column(
+                                  children: widget.items
+                                      .map(
+                                        (e) => Padding(
+                                          padding: const EdgeInsets.only(
+                                            bottom: 12,
+                                          ),
+                                          child: _ReportRow(item: e, l10n: l10n),
+                                        ),
+                                      )
+                                      .toList(),
                                 ),
+                              ),
                             ],
                           ),
                         ),
@@ -259,13 +289,8 @@ class _ReportRow extends StatelessWidget {
               alignment: AlignmentDirectional.centerEnd,
               child: HapticFilledButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      content: Text(
-                        '${l10n.commonDownloadPdf}: ${item.localizedTitle(isAr)}',
-                      ),
-                    ),
+                  AppSnackbar.show(
+                    '${l10n.commonDownloadPdf}: ${item.localizedTitle(isAr)}',
                   );
                 },
                 style: ElevatedButton.styleFrom(

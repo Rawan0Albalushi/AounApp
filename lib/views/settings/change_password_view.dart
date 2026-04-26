@@ -335,8 +335,9 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                               keyboardType:
                                                   TextInputType.visiblePassword,
                                               onFieldSubmitted: (_) {
-                                                if (!_isSubmitting)
+                                                if (!_isSubmitting) {
                                                   _submit(l10n);
+                                                }
                                               },
                                               decoration: InputDecoration(
                                                 labelText:

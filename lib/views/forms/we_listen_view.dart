@@ -136,8 +136,7 @@ class _WeListenViewState extends State<WeListenView> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         DropdownButtonFormField<String>(
-                                          value:
-                                              _category, // ignore: deprecated_member_use
+                                          initialValue: _category,
                                           decoration: InputDecoration(
                                             labelText: l10n.feedbackCategory,
                                             filled: true,

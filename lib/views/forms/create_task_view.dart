@@ -146,8 +146,7 @@ class _CreateTaskViewState extends State<CreateTaskView> {
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         DropdownButtonFormField<String>(
-                                          value:
-                                              _employee, // ignore: deprecated_member_use
+                                          initialValue: _employee,
                                           decoration: InputDecoration(
                                             labelText: l10n.assignTo,
                                             filled: true,

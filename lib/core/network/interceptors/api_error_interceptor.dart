@@ -17,6 +17,24 @@ class ApiErrorInterceptor extends Interceptor {
   }
 
   AppException _mapException(DioException err) {
+    if (err.type == DioExceptionType.connectionTimeout ||
+        err.type == DioExceptionType.sendTimeout ||
+        err.type == DioExceptionType.receiveTimeout) {
+      return const AppException(
+        'Request timeout, please try again.',
+        code: 'timeout',
+      );
+    }
+    if (err.type == DioExceptionType.connectionError) {
+      return const AppException(
+        'No internet connection.',
+        code: 'connection_error',
+      );
+    }
+    if (err.type == DioExceptionType.cancel) {
+      return const AppException('Request was cancelled.', code: 'cancelled');
+    }
+
     final code = err.response?.statusCode;
     final message = switch (code) {
       400 => 'Bad request',
@@ -27,6 +45,6 @@ class ApiErrorInterceptor extends Interceptor {
       500 => 'Server error',
       _ => err.message ?? 'Network error',
     };
-    return AppException(message, code: code?.toString());
+    return AppException(message, code: code?.toString(), statusCode: code);
   }
 }

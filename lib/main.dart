@@ -35,7 +35,10 @@ Future<void> main() async {
           ChangeNotifierProvider(create: (_) => OnboardingProvider()),
           ChangeNotifierProvider(
             create: (_) =>
-                AuthProvider(authRepository: services.authRepository),
+                AuthProvider(
+                  authRepository: services.authRepository,
+                  sessionManager: services.sessionManager,
+                ),
           ),
         ],
         child: const AounApp(),
